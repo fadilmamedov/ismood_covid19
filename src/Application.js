@@ -83,11 +83,11 @@ const Application = () => (
         </Row>
 
         <Row>
-          <Col sm={8} className="mt-2">
+          <Col lg={8} sm={7} className="mt-2">
             <AgeBarChart />
           </Col>
 
-          <Col sm={4} className="mt-2">
+          <Col lg={4} sm={5} className="mt-2">
             <GenderPieChart
               maleCount={478}
               femaleCount={366}
