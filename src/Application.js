@@ -21,6 +21,10 @@ const ContentContainer = styled.div`
 
 SetDefaults();
 
+const createRandomArray = () => {
+  return [...Array(50)].map(() => Math.floor(Math.random() * 30) + 1);
+}
+
 const Application = () => (
   <>
     <Header />
@@ -32,6 +36,7 @@ const Application = () => (
             <InfoCard
               title="Total cases"
               value={844}
+              timeseries={createRandomArray()}
               description="19 critical"
             />
           </Col>
@@ -40,6 +45,7 @@ const Application = () => (
             <InfoCard
               title="Active cases"
               value={629}
+              timeseries={createRandomArray()}
               description="74.5% of total cases"
             />
           </Col>
@@ -48,6 +54,7 @@ const Application = () => (
             <InfoCard
               title="Recovered cases"
               value={629}
+              timeseries={createRandomArray()}
               description="22% of total cases"
             />
           </Col>
@@ -56,6 +63,7 @@ const Application = () => (
             <InfoCard
               title="Deaths"
               value={132}
+              timeseries={createRandomArray()}
               description="4% of total cases"
             />
           </Col>

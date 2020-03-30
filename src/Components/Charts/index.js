@@ -5,8 +5,6 @@ export { GenderPieChart } from './GenderPieChart/GenderPieChart';
 export { NewCasesPerDayChart } from './NewCasesPerDayChart/NewCasesPerDayChart';
 
 export const SetDefaults = () => {
-  console.log('[user]', { defaults });
-
   defaults.global.defaultFontFamily = 'Rubik';
 
   defaults.global.tooltips.xPadding = 10;
