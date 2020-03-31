@@ -51,7 +51,7 @@ const Application = () => {
     <>
       <Header />
 
-      <ContentContainer>
+      <ContentContainer className="content-container">
         <Container>
           <Row>
             <Col sm={6} lg={4} className="mt-2">
@@ -118,7 +118,7 @@ const Application = () => {
               />
             </Col>
 
-            <Col sm={8} className="mt-2">
+            <Col className="mt-2">
               <CasesPerDayChart
                 newCasesPerDay={dailyData.map(entry => ({
                   x: entry.date,

@@ -21,6 +21,7 @@ const fetchTotalInformation = async () => {
     total_males: maleCount,
     total_females: femaleCount,
     total_age_groups: ageGroups,
+    total_by_location: location,
   } = data.results[0];
 
   return {

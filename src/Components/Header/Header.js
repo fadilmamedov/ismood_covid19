@@ -29,7 +29,7 @@ const Title = styled.p`
 `;
 
 const Header = () => (
-  <Navbar bg="light" fixed="top">
+  <Navbar bg="light" fixed="top" className="header">
     <TitleContainer>
       <a href="https://www.ismood.com/">
         <Logo className="d-none d-sm-block" />
