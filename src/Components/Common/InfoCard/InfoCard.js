@@ -17,6 +17,7 @@ const Value = styled.h3`
   margin-bottom: 0;
   font-weight: normal;
   font-family: Rubik;
+  color: ${props => props.color};
 `;
 
 const Description = styled.div`
@@ -36,7 +37,7 @@ const ChartContainer = styled.div`
   margin-top: 20px;
 `;
 
-const InfoCard = ({ title, value, timeseries, description }) => {
+const InfoCard = ({ title, value, valueColor, timeseries, description }) => {
   const timeseriesChartData = (canvas) => {
     const ctx = canvas.getContext('2d');
 
@@ -105,7 +106,7 @@ const InfoCard = ({ title, value, timeseries, description }) => {
         </Title>
 
         <InnerContainer>
-          <Value>
+          <Value color={valueColor}>
             {value}
           </Value>
 
@@ -130,8 +131,13 @@ const InfoCard = ({ title, value, timeseries, description }) => {
 InfoCard.propTypes = {
   title: types.string.isRequired,
   value: types.number.isRequired,
+  valueColor: types.string,
   timeseries: types.arrayOf(types.number),
   description: types.node,
+};
+
+InfoCard.defaultProps = {
+  valueColor: 'black',
 };
 
 export { InfoCard };

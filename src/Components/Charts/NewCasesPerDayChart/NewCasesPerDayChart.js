@@ -9,8 +9,6 @@ const ChartCard = styled(ChartCardBase)`
 `;
 
 const NewCasesPerDayChart = ({ values }) => {
-  console.log('[user]', { values });
-
   const data = {
     datasets: [{
       data: values,
@@ -24,6 +22,7 @@ const NewCasesPerDayChart = ({ values }) => {
     scales: {
       xAxes: [{
         type: 'time',
+        offset: true,
         time: {
           unit: 'day'
         },

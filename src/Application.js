@@ -76,6 +76,7 @@ const Application = () => {
               <InfoCard
                 title="Recovered cases"
                 value={recoveredCases}
+                valueColor="green"
                 timeseries={dailyData.map(r.prop('recoveredCases'))}
                 description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
               />
@@ -85,6 +86,7 @@ const Application = () => {
               <InfoCard
                 title="Deaths"
                 value={deathCases}
+                valueColor="#da1e1e"
                 timeseries={dailyData.map(r.prop('deathCases'))}
                 description={`${getPercentage(deathCases, totalCases)}% of total cases`}
               />
