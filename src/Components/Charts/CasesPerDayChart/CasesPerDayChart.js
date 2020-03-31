@@ -12,12 +12,12 @@ const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
   const data = {
     datasets: [
       {
-        label: 'newCasesPerDay',
+        label: 'New Cases Per Day',
         data: newCasesPerDay,
         backgroundColor: '#ee774c'
       },
       {
-        label: 'totalCasesPerDay',
+        label: 'Total Cases Per Day',
         data: totalCasesPerDay,
         type: 'line'
       }
