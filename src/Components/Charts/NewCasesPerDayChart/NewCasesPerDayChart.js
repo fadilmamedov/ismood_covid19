@@ -55,7 +55,6 @@ const NewCasesPerDayChart = () => {
       <ChartCard.Body>
         <Bar
           data={data}
-          height="100%"
           options={options}
         />
       </ChartCard.Body>

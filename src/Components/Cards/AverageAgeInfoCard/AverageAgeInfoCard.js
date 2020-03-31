@@ -31,7 +31,7 @@ const Value = styled.h3`
   text-align: center;
 `;
 
-const AverageAgeInfoCard = ({ title, values }) => (
+const AverageAgeInfoCard = ({ values }) => (
   <Card>
     <CardBody>
       <Container>
@@ -70,7 +70,6 @@ const AverageAgeInfoCard = ({ title, values }) => (
 );
 
 AverageAgeInfoCard.propTypes = {
-  title: types.string.isRequired,
   values: types.shape({
     all: types.number.isRequired,
     active: types.number.isRequired,
