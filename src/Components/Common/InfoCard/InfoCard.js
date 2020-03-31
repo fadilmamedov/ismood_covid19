@@ -7,7 +7,7 @@ import { Line } from 'react-chartjs-2';
 const Title = styled.h6`
   margin: 0;
   margin-bottom: 7px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   font-family: Rubik;
   text-transform: uppercase;
