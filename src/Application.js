@@ -17,7 +17,7 @@ import {
   SetDefaults,
   AgeBarChart,
   GenderPieChart,
-  NewCasesPerDayChart,
+  CasesPerDayChart,
 } from 'Components/Charts';
 
 const ContentContainer = styled.div`
@@ -120,10 +120,14 @@ const Application = () => {
             </Col>
 
             <Col sm={8} className="mt-2">
-              <NewCasesPerDayChart
-                values={dailyData.map(entry => ({
+              <CasesPerDayChart
+                newCasesPerDay={dailyData.map(entry => ({
                   x: entry.date,
                   y: entry.newCases,
+                }))}
+                totalCasesPerDay={dailyData.map(entry => ({
+                  x: entry.date,
+                  y: entry.totalCases,
                 }))}
               />
             </Col>

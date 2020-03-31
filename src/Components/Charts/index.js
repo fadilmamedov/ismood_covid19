@@ -2,7 +2,7 @@ import { defaults } from 'react-chartjs-2';
 
 export { AgeBarChart } from './AgeBarChart/AgeBarChart';
 export { GenderPieChart } from './GenderPieChart/GenderPieChart';
-export { NewCasesPerDayChart } from './NewCasesPerDayChart/NewCasesPerDayChart';
+export { CasesPerDayChart } from './CasesPerDayChart/CasesPerDayChart';
 
 export const SetDefaults = () => {
   defaults.global.defaultFontFamily = 'Rubik';
