@@ -96,7 +96,6 @@ const Application = () => {
               <InfoCard
                 title="Critical cases"
                 value={criticalCases}
-                description={`${getPercentage(criticalCases, totalCases)}% of total cases`}
               />
             </Col>
 
