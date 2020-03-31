@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const fetchTotalInformation = async () => {
-  const { data } = await axios.get('https://covidapi.ismood.com/total-info/?country_name=greece', {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ZmFkaWw6aXNjb3Y0NTZA',
-    }
-  });
+const auth = {
+  username: 'fadil',
+  password: 'iscov456@'
+};
 
-  // console.log('[user]', { data });
+const fetchTotalInformation = async () => {
+  const { data } = await axios.get(
+    'https://covidapi.ismood.com/total-info/?country_name=greece',
+    { auth }
+  );
 
   const {
     total_cases: totalCases,
@@ -35,4 +36,34 @@ const fetchTotalInformation = async () => {
   }
 };
 
-export { fetchTotalInformation };
+const fetchDailyInformation = async () => {
+  const { data } = await axios.get(
+    'https://covidapi.ismood.com/daily-info/?country_name=greece',
+    { auth }
+  );
+
+  const results = data.results.map((entry) => {
+    const { date } = entry;
+
+    const {
+      to_day_cases: totalCases,
+      to_day_deceased: deathCases,
+      to_day_recovered: recoveredCases,
+      to_day_active_cases: activeCases,
+      new_cases: newCases,
+    } = entry;
+
+    return {
+      date,
+      totalCases,
+      deathCases,
+      activeCases,
+      recoveredCases,
+      newCases,
+    };
+  });
+
+  return results;
+}
+
+export { fetchTotalInformation, fetchDailyInformation };

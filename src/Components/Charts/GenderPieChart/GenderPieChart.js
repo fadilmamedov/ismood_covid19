@@ -31,7 +31,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
   const data = {
     datasets: [{
       data: [maleCount, femaleCount],
-      backgroundColor: ['#7ebcff', '#f77eb9']
+      backgroundColor: ['#212529', '#ee774c']
     }],
 
     labels: [
@@ -63,7 +63,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
                 title="Male"
                 count={maleCount}
                 totalCount={totalCount}
-                color="#7ebcff"
+                color="#212529"
               />
             </Col>
 
@@ -72,7 +72,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
                 title="Female"
                 count={femaleCount}
                 totalCount={totalCount}
-                color="#f77eb9"
+                color="#ee774c"
               />
             </Col>
           </Row>

@@ -1,9 +1,13 @@
 import React from 'react';
+import * as r from 'ramda';
 import styled from 'styled-components/macro';
 import { useQuery } from "react-query";
 import { Container, Row, Col } from 'react-bootstrap';
 
-import { fetchTotalInformation } from 'Api';
+import {
+  fetchTotalInformation,
+  fetchDailyInformation,
+} from 'Api';
 
 import { Header, Footer } from 'Components';
 
@@ -23,20 +27,13 @@ const ContentContainer = styled.div`
 
 SetDefaults();
 
-const createRandomArray = () => {
-  return [...Array(50)].map(() => Math.floor(Math.random() * 30) + 1);
-};
-
 const getPercentage = (value, totalValue) => {
   return (value / totalValue * 100).toFixed(2);
 };
 
-setTimeout(() => {
-  fetchTotalInformation();
-}, 2000);
-
 const Application = () => {
-  const { data } = useQuery('posts', fetchTotalInformation);
+  const { data: totalData } = useQuery('total-info', fetchTotalInformation);
+  const { data: dailyData = [] } = useQuery('daily-info', fetchDailyInformation);
 
   const {
     totalCases = 0,
@@ -48,7 +45,7 @@ const Application = () => {
     maleCount = 0,
     femaleCount = 0,
     ageGroups = {},
-  } = data || {};
+  } = totalData || {};
 
   return (
     <>
@@ -61,7 +58,7 @@ const Application = () => {
               <InfoCard
                 title="Total cases"
                 value={totalCases}
-                timeseries={createRandomArray()}
+                timeseries={dailyData.map(r.prop('totalCases'))}
                 description={`${criticalCases} critical`}
               />
             </Col>
@@ -70,7 +67,7 @@ const Application = () => {
               <InfoCard
                 title="Active cases"
                 value={activeCases}
-                timeseries={createRandomArray()}
+                timeseries={dailyData.map(r.prop('activeCases'))}
                 description={`${getPercentage(activeCases, totalCases)}% of total cases`}
               />
             </Col>
@@ -79,7 +76,7 @@ const Application = () => {
               <InfoCard
                 title="Recovered cases"
                 value={recoveredCases}
-                timeseries={createRandomArray()}
+                timeseries={dailyData.map(r.prop('recoveredCases'))}
                 description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
               />
             </Col>
@@ -88,7 +85,7 @@ const Application = () => {
               <InfoCard
                 title="Deaths"
                 value={deathCases}
-                timeseries={createRandomArray()}
+                timeseries={dailyData.map(r.prop('deathCases'))}
                 description={`${getPercentage(deathCases, totalCases)}% of total cases`}
               />
             </Col>
@@ -97,7 +94,6 @@ const Application = () => {
               <InfoCard
                 title="Critical cases"
                 value={criticalCases}
-                timeseries={createRandomArray()}
                 description={`${getPercentage(criticalCases, totalCases)}% of total cases`}
               />
             </Col>
@@ -121,7 +117,12 @@ const Application = () => {
             </Col>
 
             <Col sm={8} className="mt-2">
-              <NewCasesPerDayChart />
+              <NewCasesPerDayChart
+                values={dailyData.map(entry => ({
+                  x: entry.date,
+                  y: entry.newCases,
+                }))}
+              />
             </Col>
           </Row>
         </Container>

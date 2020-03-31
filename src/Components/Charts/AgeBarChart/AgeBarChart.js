@@ -14,13 +14,11 @@ const ChartCardBody = styled(ChartCard.Body)`
 `;
 
 const AgeBarChart = ({ ageGroups }) => {
-  console.log('[user]', { ageGroups });
-
   const data = {
     labels: r.keys(ageGroups),
     datasets: [{
       data: r.values(ageGroups),
-      backgroundColor: '#66a4fc'
+      backgroundColor: '#ee774c'
     }]
   };
 
