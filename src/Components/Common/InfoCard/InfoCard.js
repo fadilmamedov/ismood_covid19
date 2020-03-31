@@ -33,6 +33,7 @@ const InnerContainer = styled.div`
 const ChartContainer = styled.div`
   position: relative;
   height: 36px;
+  margin-top: 20px;
 `;
 
 const InfoCard = ({ title, value, timeseries, description }) => {

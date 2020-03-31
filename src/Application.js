@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Header, Footer } from 'Components';
 
 import { InfoCard } from 'Components/Common';
-import { AverageAgeInfoCard } from 'Components/Cards';
 
 import {
   SetDefaults,
@@ -32,7 +31,7 @@ const Application = () => (
     <ContentContainer>
       <Container>
         <Row>
-          <Col sm={6} lg={3} className="mt-2">
+          <Col sm={6} lg={4} className="mt-2">
             <InfoCard
               title="Total cases"
               value={844}
@@ -41,7 +40,7 @@ const Application = () => (
             />
           </Col>
 
-          <Col sm={6} lg={3} className="mt-2">
+          <Col sm={6} lg={4} className="mt-2">
             <InfoCard
               title="Active cases"
               value={629}
@@ -50,7 +49,7 @@ const Application = () => (
             />
           </Col>
 
-          <Col sm={6} lg={3} className="mt-2">
+          <Col sm={6} lg={4} className="mt-2">
             <InfoCard
               title="Recovered cases"
               value={629}
@@ -59,7 +58,7 @@ const Application = () => (
             />
           </Col>
 
-          <Col sm={6} lg={3} className="mt-2">
+          <Col sm={6} lg={4} className="mt-2">
             <InfoCard
               title="Deaths"
               value={132}
@@ -67,30 +66,23 @@ const Application = () => (
               description="4% of total cases"
             />
           </Col>
-        </Row>
 
-        <Row>
-          <Col sm={4} lg={3} className="mt-2">
+          <Col sm={6} lg={4} className="mt-2">
             <InfoCard
               title="Critical cases"
               value={17}
+              timeseries={createRandomArray()}
               description="2% of total cases"
             />
           </Col>
 
-          <Col sm={8} lg={9} className="mt-2">
-            <AverageAgeInfoCard
-              values={{
-                all: 37,
-                active: 23,
-                recovered: 21,
-                deaths: 75,
-              }}
+          <Col sm={6} lg={4} className="mt-2">
+            <InfoCard
+              title="Average age"
+              value={37}
             />
           </Col>
-        </Row>
 
-        <Row>
           <Col lg={8} sm={7} className="mt-2">
             <AgeBarChart />
           </Col>
@@ -101,9 +93,7 @@ const Application = () => (
               femaleCount={366}
             />
           </Col>
-        </Row>
 
-        <Row>
           <Col sm={8} className="mt-2">
             <NewCasesPerDayChart />
           </Col>
