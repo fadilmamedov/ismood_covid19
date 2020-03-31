@@ -1,4 +1,5 @@
 import React from 'react';
+import * as r from 'ramda';
 import styled from 'styled-components/macro';
 import { Bar } from 'react-chartjs-2';
 
@@ -12,11 +13,13 @@ const ChartCardBody = styled(ChartCard.Body)`
   }
 `;
 
-const AgeBarChart = () => {
+const AgeBarChart = ({ ageGroups }) => {
+  console.log('[user]', { ageGroups });
+
   const data = {
-    labels: ['1-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90'],
+    labels: r.keys(ageGroups),
     datasets: [{
-      data: [17, 20, 22, 45, 89, 91, 78, 98, 120],
+      data: r.values(ageGroups),
       backgroundColor: '#66a4fc'
     }]
   };

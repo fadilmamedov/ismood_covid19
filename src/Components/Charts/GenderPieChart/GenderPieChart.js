@@ -70,7 +70,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
             <Col xs={6}>
               <GenderInfo
                 title="Female"
-                count={maleCount}
+                count={femaleCount}
                 totalCount={totalCount}
                 color="#f77eb9"
               />
