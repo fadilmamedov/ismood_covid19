@@ -104,6 +104,7 @@ const Application = () => {
               <InfoCard
                 title="Average age"
                 value={averageAge}
+                valueDecimalPlaces={1}
               />
             </Col>
 

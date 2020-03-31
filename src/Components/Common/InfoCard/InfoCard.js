@@ -37,7 +37,14 @@ const ChartContainer = styled.div`
   margin-top: 20px;
 `;
 
-const InfoCard = ({ title, value, valueColor, timeseries, description }) => {
+const InfoCard = ({
+  title,
+  value,
+  valueColor,
+  valueDecimalPlaces,
+  timeseries,
+  description,
+}) => {
   const timeseriesChartData = (canvas) => {
     const ctx = canvas.getContext('2d');
 
@@ -107,7 +114,7 @@ const InfoCard = ({ title, value, valueColor, timeseries, description }) => {
 
         <InnerContainer>
           <Value color={valueColor}>
-            {value}
+            {value.toFixed(valueDecimalPlaces)}
           </Value>
 
           <Description>
@@ -132,12 +139,14 @@ InfoCard.propTypes = {
   title: types.string.isRequired,
   value: types.number.isRequired,
   valueColor: types.string,
+  valueDecimalPlaces: types.number,
   timeseries: types.arrayOf(types.number),
   description: types.node,
 };
 
 InfoCard.defaultProps = {
   valueColor: 'black',
+  valueDecimalPlaces: 0,
 };
 
 export { InfoCard };
