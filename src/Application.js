@@ -10,7 +10,7 @@ import {
   fetchDailyInformation,
 } from 'Api';
 
-import { Header, Footer } from 'Components';
+import { Header, Footer, PageContainer } from 'Components';
 
 import { InfoCard as InfoCardBase } from 'Components/Common';
 
@@ -165,47 +165,47 @@ const Application = () => {
           </Route>
 
           <Route path="/total-cases" exact>
-            <Container>
+            <PageContainer title="Total cases">
               <CasesLineChart
                 values={dailyData.map((entry) => ({
                   x: entry.date,
                   y: entry.totalCases,
                 }))}
               />
-            </Container>
+            </PageContainer>
           </Route>
 
           <Route path="/active-cases" exact>
-            <Container>
+            <PageContainer title="Active cases">
               <CasesLineChart
                 values={dailyData.map((entry) => ({
                   x: entry.date,
                   y: entry.activeCases,
                 }))}
               />
-            </Container>
+            </PageContainer>
           </Route>
 
           <Route path="/recovered-cases" exact>
-            <Container>
+            <PageContainer title="Recovered cases">
               <CasesLineChart
                 values={dailyData.map((entry) => ({
                   x: entry.date,
                   y: entry.recoveredCases,
                 }))}
               />
-            </Container>
+            </PageContainer>
           </Route>
 
           <Route path="/death-cases" exact>
-            <Container>
+            <PageContainer title="Deaths">
               <CasesLineChart
                 values={dailyData.map((entry) => ({
                   x: entry.date,
                   y: entry.deathCases,
                 }))}
               />
-            </Container>
+            </PageContainer>
           </Route>
         </Switch>
       </ContentContainer>
