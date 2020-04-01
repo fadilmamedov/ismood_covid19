@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && surge ./build iscovid19greece.surge.sh"
+    "deploy": "yarn build && mv ./build/index.html ./build/200.html && surge ./build iscovid19greece.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
