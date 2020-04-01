@@ -55,10 +55,10 @@ const GenderInfo = ({ title, count, totalCount, color, className }) => {
         <ColorIndicator color={color} />
 
         <ValueNumber>
-          {count}
+          {valuePercent.toFixed(2)}%
 
           <ValueDescription>
-            {valuePercent.toFixed(2)}%
+            {count}
           </ValueDescription>
         </ValueNumber>
       </ValueContainer>
