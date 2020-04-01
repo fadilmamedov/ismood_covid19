@@ -54,7 +54,7 @@ const Application = () => {
       <ContentContainer className="content-container">
         <Container>
           <Row>
-            <Col sm={6} lg={4} className="mt-2">
+            <Col sm={6} lg={3} className="mt-2">
               <InfoCard
                 title="Total cases"
                 value={totalCases}
@@ -63,7 +63,7 @@ const Application = () => {
               />
             </Col>
 
-            <Col sm={6} lg={4} className="mt-2">
+            <Col sm={6} lg={3} className="mt-2">
               <InfoCard
                 title="Active cases"
                 value={activeCases}
@@ -72,7 +72,7 @@ const Application = () => {
               />
             </Col>
 
-            <Col sm={6} lg={4} className="mt-2">
+            <Col sm={6} lg={3} className="mt-2">
               <InfoCard
                 title="Recovered cases"
                 value={recoveredCases}
@@ -82,28 +82,13 @@ const Application = () => {
               />
             </Col>
 
-            <Col sm={6} lg={4} className="mt-2">
+            <Col sm={6} lg={3} className="mt-2">
               <InfoCard
                 title="Deaths"
                 value={deathCases}
                 valueColor="#da1e1e"
                 timeseries={dailyData.map(r.prop('deathCases'))}
                 description={`${getPercentage(deathCases, totalCases)}% of total cases`}
-              />
-            </Col>
-
-            <Col sm={6} lg={4} className="mt-2">
-              <InfoCard
-                title="Critical cases"
-                value={criticalCases}
-              />
-            </Col>
-
-            <Col sm={6} lg={4} className="mt-2">
-              <InfoCard
-                title="Average age"
-                value={averageAge}
-                valueDecimalPlaces={1}
               />
             </Col>
 
@@ -121,7 +106,10 @@ const Application = () => {
             </Col>
 
             <Col lg={8} sm={7} className="mt-2">
-              <AgeBarChart ageGroups={ageGroups} />
+              <AgeBarChart
+                ageGroups={ageGroups}
+                averageAge={averageAge}
+              />
             </Col>
 
             <Col lg={4} sm={5} className="mt-2">

@@ -41,7 +41,6 @@ const InfoCard = ({
   title,
   value,
   valueColor,
-  valueDecimalPlaces,
   timeseries,
   description,
 }) => {
@@ -114,7 +113,7 @@ const InfoCard = ({
 
         <InnerContainer>
           <Value color={valueColor}>
-            {value.toFixed(valueDecimalPlaces)}
+            {value}
           </Value>
 
           <Description>
@@ -139,14 +138,12 @@ InfoCard.propTypes = {
   title: types.string.isRequired,
   value: types.number.isRequired,
   valueColor: types.string,
-  valueDecimalPlaces: types.number,
   timeseries: types.arrayOf(types.number),
   description: types.node,
 };
 
 InfoCard.defaultProps = {
   valueColor: 'black',
-  valueDecimalPlaces: 0,
 };
 
 export { InfoCard };

@@ -1,9 +1,15 @@
 import React from 'react';
 import * as r from 'ramda';
+import types from 'prop-types';
 import styled from 'styled-components/macro';
 import { Bar } from 'react-chartjs-2';
 
 import { ChartCard } from 'Components/Common';
+
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const ChartCardBody = styled(ChartCard.Body)`
   height: 300px;
@@ -13,7 +19,7 @@ const ChartCardBody = styled(ChartCard.Body)`
   }
 `;
 
-const AgeBarChart = ({ ageGroups }) => {
+const AgeBarChart = ({ ageGroups, averageAge }) => {
   const data = {
     labels: r.keys(ageGroups),
     datasets: [{
@@ -28,8 +34,16 @@ const AgeBarChart = ({ ageGroups }) => {
     maintainAspectRatio: false,
   };
 
+  const title = (
+    <Title>
+      <span>Age</span>
+
+      <span>Average age: {averageAge.toFixed(1)}</span>
+    </Title>
+  );
+
   return (
-    <ChartCard title="Age">
+    <ChartCard title={title}>
       <ChartCardBody>
         <Bar
           data={data}
@@ -38,6 +52,11 @@ const AgeBarChart = ({ ageGroups }) => {
       </ChartCardBody>
     </ChartCard>
   )
-}
+};
+
+AgeBarChart.propTypes = {
+  ageGroups: types.objectOf(types.number).isRequired,
+  averageAge: types.number.isRequired,
+};
 
 export { AgeBarChart };
