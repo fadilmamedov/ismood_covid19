@@ -43,6 +43,7 @@ const InfoCard = ({
   valueColor,
   timeseries,
   description,
+  className,
 }) => {
   const timeseriesChartData = (canvas) => {
     const ctx = canvas.getContext('2d');
@@ -105,7 +106,7 @@ const InfoCard = ({
   };
 
   return (
-    <Card>
+    <Card className={className}>
       <Card.Body>
         <Title>
           {title}
@@ -140,6 +141,7 @@ InfoCard.propTypes = {
   valueColor: types.string,
   timeseries: types.arrayOf(types.number),
   description: types.node,
+  className: types.string,
 };
 
 InfoCard.defaultProps = {

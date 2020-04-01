@@ -3,6 +3,7 @@ import * as r from 'ramda';
 import styled from 'styled-components/macro';
 import { useQuery } from "react-query";
 import { Container, Row, Col } from 'react-bootstrap';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 import {
   fetchTotalInformation,
@@ -11,12 +12,13 @@ import {
 
 import { Header, Footer } from 'Components';
 
-import { InfoCard } from 'Components/Common';
+import { InfoCard as InfoCardBase } from 'Components/Common';
 
 import {
   SetDefaults,
   AgeBarChart,
   GenderPieChart,
+  CasesLineChart,
   CasesPerDayChart,
 } from 'Components/Charts';
 
@@ -27,6 +29,25 @@ const ContentContainer = styled.div`
 
 const CriticalValue = styled.span`
   color: #da1e1e;
+`;
+
+const InfoCard = styled(InfoCardBase)`
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, .15), 0 0 0 rgba(16, 22, 26, 0), 0 0 0 rgba(16, 22, 26, 0);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, .1), 0 2px 4px rgba(16, 22, 26, .2), 0 8px 24px rgba(16, 22, 26, .2)
+  }
+`;
+
+const ChartLink = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 SetDefaults();
@@ -52,89 +73,145 @@ const Application = () => {
   } = totalData || {};
 
   return (
-    <>
+    <BrowserRouter>
       <Header />
 
       <ContentContainer className="content-container">
-        <Container>
-          <Row>
-            <Col sm={6} lg={3} className="mt-2">
-              <InfoCard
-                title="Total cases"
-                value={totalCases}
-                timeseries={dailyData.map(r.prop('totalCases'))}
-                description={(
-                  <>
-                    <CriticalValue>
-                      {criticalCases} {' '}
-                    </CriticalValue>
-                    critical
-                  </>
-                )}
-              />
-            </Col>
+        <Switch>
+          <Route path="/" exact>
+            <Container>
+              <Row>
+                <Col sm={6} lg={3} className="mt-2">
+                  <ChartLink to="/total-cases">
+                    <InfoCard
+                      title="Total cases"
+                      value={totalCases}
+                      timeseries={dailyData.map(r.prop('totalCases'))}
+                      description={(
+                        <>
+                          <CriticalValue>
+                            {criticalCases} {' '}
+                          </CriticalValue>
+                          critical
+                        </>
+                      )}
+                    />
+                  </ChartLink>
+                </Col>
 
-            <Col sm={6} lg={3} className="mt-2">
-              <InfoCard
-                title="Active cases"
-                value={activeCases}
-                timeseries={dailyData.map(r.prop('activeCases'))}
-                description={`${getPercentage(activeCases, totalCases)}% of total cases`}
-              />
-            </Col>
+                <Col sm={6} lg={3} className="mt-2">
+                  <ChartLink to="/active-cases">
+                    <InfoCard
+                      title="Active cases"
+                      value={activeCases}
+                      timeseries={dailyData.map(r.prop('activeCases'))}
+                      description={`${getPercentage(activeCases, totalCases)}% of total cases`}
+                    />
+                  </ChartLink>
+                </Col>
 
-            <Col sm={6} lg={3} className="mt-2">
-              <InfoCard
-                title="Recovered cases"
-                value={recoveredCases}
-                valueColor="green"
-                timeseries={dailyData.map(r.prop('recoveredCases'))}
-                description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
-              />
-            </Col>
+                <Col sm={6} lg={3} className="mt-2">
+                  <ChartLink to="/recovered-cases">
+                    <InfoCard
+                      title="Recovered cases"
+                      value={recoveredCases}
+                      valueColor="green"
+                      timeseries={dailyData.map(r.prop('recoveredCases'))}
+                      description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
+                    />
+                  </ChartLink>
+                </Col>
 
-            <Col sm={6} lg={3} className="mt-2">
-              <InfoCard
-                title="Deaths"
-                value={deathCases}
-                valueColor="#da1e1e"
-                timeseries={dailyData.map(r.prop('deathCases'))}
-                description={`${getPercentage(deathCases, totalCases)}% of total cases`}
-              />
-            </Col>
+                <Col sm={6} lg={3} className="mt-2">
+                  <ChartLink to="/death-cases">
+                    <InfoCard
+                      title="Deaths"
+                      value={deathCases}
+                      valueColor="#da1e1e"
+                      timeseries={dailyData.map(r.prop('deathCases'))}
+                      description={`${getPercentage(deathCases, totalCases)}% of total cases`}
+                    />
+                  </ChartLink>
+                </Col>
 
-            <Col xs={12} className="mt-2">
-              <CasesPerDayChart
-                newCasesPerDay={dailyData.map(entry => ({
-                  x: entry.date,
-                  y: entry.newCases,
-                }))}
-                totalCasesPerDay={dailyData.map(entry => ({
+                <Col xs={12} className="mt-2">
+                  <CasesPerDayChart
+                    newCasesPerDay={dailyData.map(entry => ({
+                      x: entry.date,
+                      y: entry.newCases,
+                    }))}
+                    totalCasesPerDay={dailyData.map(entry => ({
+                      x: entry.date,
+                      y: entry.totalCases,
+                    }))}
+                  />
+                </Col>
+
+                <Col lg={8} sm={7} className="mt-2">
+                  <AgeBarChart
+                    ageGroups={ageGroups}
+                    averageAge={averageAge}
+                  />
+                </Col>
+
+                <Col lg={4} sm={5} className="mt-2">
+                  <GenderPieChart
+                    maleCount={maleCount}
+                    femaleCount={femaleCount}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Route>
+
+          <Route path="/total-cases" exact>
+            <Container>
+              <CasesLineChart
+                values={dailyData.map((entry) => ({
                   x: entry.date,
                   y: entry.totalCases,
                 }))}
               />
-            </Col>
+            </Container>
+          </Route>
 
-            <Col lg={8} sm={7} className="mt-2">
-              <AgeBarChart
-                ageGroups={ageGroups}
-                averageAge={averageAge}
+          <Route path="/active-cases" exact>
+            <Container>
+              <CasesLineChart
+                values={dailyData.map((entry) => ({
+                  x: entry.date,
+                  y: entry.activeCases,
+                }))}
               />
-            </Col>
+            </Container>
+          </Route>
 
-            <Col lg={4} sm={5} className="mt-2">
-              <GenderPieChart
-                maleCount={maleCount}
-                femaleCount={femaleCount}
+          <Route path="/recovered-cases" exact>
+            <Container>
+              <CasesLineChart
+                values={dailyData.map((entry) => ({
+                  x: entry.date,
+                  y: entry.recoveredCases,
+                }))}
               />
-            </Col>
-          </Row>
-        </Container>
+            </Container>
+          </Route>
+
+          <Route path="/death-cases" exact>
+            <Container>
+              <CasesLineChart
+                values={dailyData.map((entry) => ({
+                  x: entry.date,
+                  y: entry.deathCases,
+                }))}
+              />
+            </Container>
+          </Route>
+        </Switch>
       </ContentContainer>
 
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

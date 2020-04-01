@@ -2,6 +2,7 @@ import { defaults } from 'react-chartjs-2';
 
 export { AgeBarChart } from './AgeBarChart/AgeBarChart';
 export { GenderPieChart } from './GenderPieChart/GenderPieChart';
+export { CasesLineChart } from './CasesLineChart/CasesLineChart';
 export { CasesPerDayChart } from './CasesPerDayChart/CasesPerDayChart';
 
 export const SetDefaults = () => {
