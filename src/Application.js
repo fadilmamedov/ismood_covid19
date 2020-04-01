@@ -88,12 +88,9 @@ const Application = () => {
                       value={totalCases}
                       timeseries={dailyData.map(r.prop('totalCases'))}
                       description={(
-                        <>
-                          <CriticalValue>
-                            {criticalCases} {' '}
-                          </CriticalValue>
-                          critical
-                        </>
+                        <CriticalValue>
+                          {criticalCases} critical
+                        </CriticalValue>
                       )}
                     />
                   </ChartLink>
