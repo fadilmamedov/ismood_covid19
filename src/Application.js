@@ -1,18 +1,13 @@
 import React from 'react';
 import * as r from 'ramda';
-import styled from 'styled-components/macro';
-import { useQuery } from "react-query";
+import types from 'prop-types';
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import {
-  fetchTotalInformation,
-  fetchDailyInformation,
-} from 'Api';
+import { actions, selectors } from 'Store';
 
 import { Header, Footer, PageContainer } from 'Components';
-
-import { InfoCard as InfoCardBase } from 'Components/Common';
 
 import {
   SetDefaults,
@@ -22,33 +17,12 @@ import {
   CasesPerDayChart,
 } from 'Components/Charts';
 
-const ContentContainer = styled.div`
-  margin-top: 70px;
-  margin-bottom: 50px;
-`;
-
-const CriticalValue = styled.span`
-  color: #da1e1e;
-`;
-
-const InfoCard = styled(InfoCardBase)`
-  border: 0;
-  box-shadow: 0 0 0 1px rgba(16, 22, 26, .15), 0 0 0 rgba(16, 22, 26, 0), 0 0 0 rgba(16, 22, 26, 0);
-  transition: box-shadow 0.2s;
-
-  &:hover {
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, .1), 0 2px 4px rgba(16, 22, 26, .2), 0 8px 24px rgba(16, 22, 26, .2)
-  }
-`;
-
-const ChartLink = styled(Link)`
-  color: black;
-
-  &:hover {
-    color: black;
-    text-decoration: none;
-  }
-`;
+import {
+  InfoCard,
+  ChartLink,
+  CriticalValue,
+  ContentContainer,
+} from './Application.Components';
 
 SetDefaults();
 
@@ -56,9 +30,16 @@ const getPercentage = (value, totalValue) => {
   return (value / totalValue * 100).toFixed(2);
 };
 
-const Application = () => {
-  const { data: totalData } = useQuery('total-info', fetchTotalInformation);
-  const { data: dailyData = [] } = useQuery('daily-info', fetchDailyInformation);
+const ApplicationBase = ({
+  totalInformation,
+  dailyInformation,
+  fetchTotalInformation,
+  fetchDailyInformation,
+}) => {
+  React.useEffect(() => {
+    fetchTotalInformation();
+    fetchDailyInformation();
+  }, [fetchTotalInformation, fetchDailyInformation]);
 
   const {
     totalCases = 0,
@@ -70,7 +51,7 @@ const Application = () => {
     maleCount = 0,
     femaleCount = 0,
     ageGroups = {},
-  } = totalData || {};
+  } = totalInformation;
 
   return (
     <BrowserRouter>
@@ -86,7 +67,7 @@ const Application = () => {
                     <InfoCard
                       title="Total cases"
                       value={totalCases}
-                      timeseries={dailyData.map(r.prop('totalCases'))}
+                      timeseries={dailyInformation.map(r.prop('totalCases'))}
                       description={(
                         <CriticalValue>
                           {criticalCases} critical
@@ -101,7 +82,7 @@ const Application = () => {
                     <InfoCard
                       title="Active cases"
                       value={activeCases}
-                      timeseries={dailyData.map(r.prop('activeCases'))}
+                      timeseries={dailyInformation.map(r.prop('activeCases'))}
                       description={`${getPercentage(activeCases, totalCases)}% of total cases`}
                     />
                   </ChartLink>
@@ -113,7 +94,7 @@ const Application = () => {
                       title="Recovered cases"
                       value={recoveredCases}
                       valueColor="green"
-                      timeseries={dailyData.map(r.prop('recoveredCases'))}
+                      timeseries={dailyInformation.map(r.prop('recoveredCases'))}
                       description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
                     />
                   </ChartLink>
@@ -125,7 +106,7 @@ const Application = () => {
                       title="Deaths"
                       value={deathCases}
                       valueColor="#da1e1e"
-                      timeseries={dailyData.map(r.prop('deathCases'))}
+                      timeseries={dailyInformation.map(r.prop('deathCases'))}
                       description={`${getPercentage(deathCases, totalCases)}% of total cases`}
                     />
                   </ChartLink>
@@ -133,11 +114,11 @@ const Application = () => {
 
                 <Col xs={12} className="mt-2">
                   <CasesPerDayChart
-                    newCasesPerDay={dailyData.map(entry => ({
+                    newCasesPerDay={dailyInformation.map(entry => ({
                       x: entry.date,
                       y: entry.newCases,
                     }))}
-                    totalCasesPerDay={dailyData.map(entry => ({
+                    totalCasesPerDay={dailyInformation.map(entry => ({
                       x: entry.date,
                       y: entry.totalCases,
                     }))}
@@ -164,7 +145,7 @@ const Application = () => {
           <Route path="/total-cases" exact>
             <PageContainer title="Total cases">
               <CasesLineChart
-                values={dailyData.map((entry) => ({
+                values={dailyInformation.map((entry) => ({
                   x: entry.date,
                   y: entry.totalCases,
                 }))}
@@ -175,7 +156,7 @@ const Application = () => {
           <Route path="/active-cases" exact>
             <PageContainer title="Active cases">
               <CasesLineChart
-                values={dailyData.map((entry) => ({
+                values={dailyInformation.map((entry) => ({
                   x: entry.date,
                   y: entry.activeCases,
                 }))}
@@ -186,7 +167,7 @@ const Application = () => {
           <Route path="/recovered-cases" exact>
             <PageContainer title="Recovered cases">
               <CasesLineChart
-                values={dailyData.map((entry) => ({
+                values={dailyInformation.map((entry) => ({
                   x: entry.date,
                   y: entry.recoveredCases,
                 }))}
@@ -197,7 +178,7 @@ const Application = () => {
           <Route path="/death-cases" exact>
             <PageContainer title="Deaths">
               <CasesLineChart
-                values={dailyData.map((entry) => ({
+                values={dailyInformation.map((entry) => ({
                   x: entry.date,
                   y: entry.deathCases,
                 }))}
@@ -210,6 +191,34 @@ const Application = () => {
       <Footer />
     </BrowserRouter>
   );
-}
+};
+
+ApplicationBase.propTypes = {
+  fetchTotalInformation: types.func.isRequired,
+  fetchDailyInformation: types.func.isRequired,
+};
+
+const {
+  fetchTotalInformation,
+  fetchDailyInformation,
+} = actions.statistics;
+
+const {
+  getTotalInformation,
+  getDailyInformation,
+} = selectors.statistics;
+
+const Application = r.compose(
+  connect(
+    r.applySpec({
+      totalInformation: getTotalInformation,
+      dailyInformation: getDailyInformation,
+    }),
+    {
+      fetchTotalInformation,
+      fetchDailyInformation,
+    },
+  )
+)(ApplicationBase);
 
 export { Application };
