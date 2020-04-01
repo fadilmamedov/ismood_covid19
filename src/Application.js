@@ -15,6 +15,7 @@ import {
   GenderPieChart,
   CasesLineChart,
   CasesPerDayChart,
+  CasesPerDayBubbleChart,
 } from 'Components/Charts';
 
 import {
@@ -110,6 +111,19 @@ const ApplicationBase = ({
                       description={`${getPercentage(deathCases, totalCases)}% of total cases`}
                     />
                   </ChartLink>
+                </Col>
+
+                <Col xs={12} className="mt-2">
+                  <CasesPerDayBubbleChart
+                    newCasesPerDay={dailyInformation.map(entry => ({
+                      x: entry.date,
+                      y: entry.newCases,
+                    }))}
+                    totalCasesPerDay={dailyInformation.map(entry => ({
+                      x: entry.date,
+                      y: entry.totalCases,
+                    }))}
+                  />
                 </Col>
 
                 <Col xs={12} className="mt-2">

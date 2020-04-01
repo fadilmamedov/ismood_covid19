@@ -4,6 +4,7 @@ export { AgeBarChart } from './AgeBarChart/AgeBarChart';
 export { GenderPieChart } from './GenderPieChart/GenderPieChart';
 export { CasesLineChart } from './CasesLineChart/CasesLineChart';
 export { CasesPerDayChart } from './CasesPerDayChart/CasesPerDayChart';
+export { CasesPerDayBubbleChart } from './CasesPerDayBubbleChart/CasesPerDayBubbleChart';
 
 export const SetDefaults = () => {
   defaults.global.defaultFontFamily = 'Rubik';
