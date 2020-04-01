@@ -25,6 +25,10 @@ const ContentContainer = styled.div`
   margin-bottom: 50px;
 `;
 
+const CriticalValue = styled.span`
+  color: #da1e1e;
+`;
+
 SetDefaults();
 
 const getPercentage = (value, totalValue) => {
@@ -59,7 +63,14 @@ const Application = () => {
                 title="Total cases"
                 value={totalCases}
                 timeseries={dailyData.map(r.prop('totalCases'))}
-                description={`${criticalCases} critical`}
+                description={(
+                  <>
+                    <CriticalValue>
+                      {criticalCases} {' '}
+                    </CriticalValue>
+                    critical
+                  </>
+                )}
               />
             </Col>
 
