@@ -1,32 +1,43 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 import { ChartCard as ChartCardBase } from 'Components/Common';
+import { CasesPerDayChartHeader } from './CasesPerDayChart.Header';
 
 const ChartCard = styled(ChartCardBase)`
   height: 400px;
 `;
 
+const ChartCardBody = styled(ChartCard.Body)`
+  height: 400px;
+`;
+
 const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
-  const data = {
-    datasets: [
-      {
-        label: 'New Cases Per Day',
-        data: newCasesPerDay,
-        backgroundColor: '#ee774c'
-      },
-      {
-        label: 'Total Cases Per Day',
-        data: totalCasesPerDay,
-        type: 'line'
-      }
-    ]
+  const [selectedChart, setSelectedChart] = React.useState('new-cases-per-day');
+
+  const scrollPosition = window.scrollY;
+  React.useEffect(() => {
+    window.scrollTo(0, scrollPosition);
+  });
+
+  const newCasesPerDayData = {
+    datasets: [{
+      data: newCasesPerDay,
+      backgroundColor: '#ee774c'
+    }]
+  };
+
+  const totalCasesPerDayData = {
+    datasets: [{
+      data: totalCasesPerDay,
+    }]
   };
 
   const options = {
     legend: false,
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       xAxes: [{
         type: 'time',
@@ -61,14 +72,32 @@ const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
     },
   };
 
+  const title = (
+    <CasesPerDayChartHeader
+      selectedChart={selectedChart}
+      onSelectChart={(chart) => {
+        setSelectedChart(chart);
+      }}
+    />
+  );
+
   return (
-    <ChartCard title="New cases per day / Total cases per day">
-      <ChartCard.Body>
-        <Bar
-          data={data}
-          options={options}
-        />
-      </ChartCard.Body>
+    <ChartCard title={title}>
+      <ChartCardBody>
+        {selectedChart === 'new-cases-per-day' && (
+          <Bar
+            data={newCasesPerDayData}
+            options={options}
+          />
+        )}
+
+        {selectedChart === 'total-cases-per-day' && (
+          <Line
+            data={totalCasesPerDayData}
+            options={options}
+          />
+        )}
+      </ChartCardBody>
     </ChartCard>
   )
 }

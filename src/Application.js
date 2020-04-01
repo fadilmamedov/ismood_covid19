@@ -107,18 +107,7 @@ const Application = () => {
               />
             </Col>
 
-            <Col lg={8} sm={7} className="mt-2">
-              <AgeBarChart ageGroups={ageGroups} />
-            </Col>
-
-            <Col lg={4} sm={5} className="mt-2">
-              <GenderPieChart
-                maleCount={maleCount}
-                femaleCount={femaleCount}
-              />
-            </Col>
-
-            <Col className="mt-2">
+            <Col xs={12} className="mt-2">
               <CasesPerDayChart
                 newCasesPerDay={dailyData.map(entry => ({
                   x: entry.date,
@@ -128,6 +117,17 @@ const Application = () => {
                   x: entry.date,
                   y: entry.totalCases,
                 }))}
+              />
+            </Col>
+
+            <Col lg={8} sm={7} className="mt-2">
+              <AgeBarChart ageGroups={ageGroups} />
+            </Col>
+
+            <Col lg={4} sm={5} className="mt-2">
+              <GenderPieChart
+                maleCount={maleCount}
+                femaleCount={femaleCount}
               />
             </Col>
           </Row>

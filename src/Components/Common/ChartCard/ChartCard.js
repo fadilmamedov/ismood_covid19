@@ -22,7 +22,7 @@ const ChartCard = ({ title, children, height, className }) => (
 );
 
 ChartCard.propTypes = {
-  title: types.string.isRequired,
+  title: types.node.isRequired,
   children: types.node.isRequired,
   className: types.string,
 }
