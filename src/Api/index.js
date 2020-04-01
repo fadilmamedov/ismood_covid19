@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as r from 'ramda';
 
 const auth = {
   username: 'fadil',
@@ -64,7 +65,7 @@ const fetchDailyInformation = async () => {
     };
   });
 
-  return results;
+  return r.sortBy(r.prop('date'))(results);
 }
 
 export { fetchTotalInformation, fetchDailyInformation };
