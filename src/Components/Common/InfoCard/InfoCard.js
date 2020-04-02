@@ -1,41 +1,15 @@
 import React from 'react';
 import types from 'prop-types';
-import styled from 'styled-components/macro';
 import { Card } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 
-const Title = styled.h6`
-  margin: 0;
-  margin-bottom: 7px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: Rubik;
-  text-transform: uppercase;
-`;
-
-const Value = styled.h3`
-  margin-bottom: 0;
-  font-weight: normal;
-  font-family: Rubik;
-  color: ${props => props.color};
-`;
-
-const Description = styled.div`
-  margin-left: 5px;
-  margin-bottom: 2px;
-  font-size: 12px;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-`;
-
-const ChartContainer = styled.div`
-  position: relative;
-  height: 36px;
-  margin-top: 20px;
-`;
+import {
+  Title,
+  Value,
+  Description,
+  InnerContainer,
+  ChartContainer,
+} from './InfoCard.Components';
 
 const InfoCard = ({
   title,
