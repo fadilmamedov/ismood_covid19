@@ -6,6 +6,10 @@ import { InfoCard as InfoCardBase } from 'Components/Common';
 const ContentContainer = styled.div`
   margin-top: 70px;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 575px) {
+    margin-bottom: 90px;
+  }
 `;
 
 const CriticalValue = styled.span`
