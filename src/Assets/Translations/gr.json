@@ -1,68 +1,68 @@
 {
-  "BackToMainPageLink": "Go to main page",
+  "BackToMainPageLink": "Επιστροφή στην αρχική σελίδα",
   "Header": {
-    "CountryName": "Greece"
+    "CountryName": "Ελλάδα"
   },
   "Footer": {
     "InformationSourceDescription": {
-      "Prefix": "Statistical data collected through",
+      "Prefix": "Τα δεδομένα συλλέγονται από",
       "And": "and"
     },
-    "ContactUsLink": "Contact Us",
-    "DownloadImageButton": "Download as image"
+    "ContactUsLink": "Επικοινωνία",
+    "DownloadImageButton": "Αποθήκευση σε εικόνα"
   },
   "Cards": {
     "TotalCases": {
       "Title": "Total cases",
-      "CriticalCasesLabel": "critical"
+      "CriticalCasesLabel": "σε κρίσιμη κατάσταση"
     },
     "ActiveCases": {
       "Title": "Active cases",
-      "TotalCasesPercentLabel": "of total cases"
+      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
     },
     "RecoveredCases": {
       "Title": "Recovered cases",
-      "TotalCasesPercentLabel": "of total cases"
+      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
     },
     "DeathCases": {
       "Title": "Deaths",
-      "TotalCasesPercentLabel": "of total cases"
+      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
     }
   },
   "Pages": {
     "TotalCases": {
-      "Title": "Total cases"
+      "Title": "ΣΥΝΟΛΟ ΚΡΟΥΣΜΑΤΩΝ"
     },
     "ActiveCases": {
-      "Title": "Active cases"
+      "Title": "ΕΝΕΡΓΑ ΚΡΟΥΣΜΑΤΑ"
     },
     "RecoveredCases": {
-      "Title": "Recovered cases"
+      "Title": "ΕΧΟΥΝ ΑΝΑΡΡΩΣΕΙ"
     },
     "DeathCases": {
-      "Title": "Deaths"
+      "Title": "ΘΑΝΑΤΟΙ"
     }
   },
   "Charts": {
     "NewTotalCasesPerDay": {
-      "Title": "New / Total cases per day",
-      "NewCasesLabel": "New cases per day",
-      "TotalCasesLabel": "Total cases per day"
+      "Title": "ΝΕΑ ΚΡΟΥΣΜΑΤΑ ΑΝΑ ΗΜΕΡΑ / ΣΥΝΟΛΙΚΑ ΚΡΟΥΣΜΑΤΑ ΑΝΑ ΗΜΕΡΑ",
+      "NewCasesLabel": "ΝΕΑ ΚΡΟΥΣΜΑΤΑ",
+      "TotalCasesLabel": "ΣΥΝΟΛΙΚΑ ΚΡΟΥΣΜΑΤΑ"
     },
     "NewCasesPerDay": {
-      "Title": "New cases per day"
+      "Title": "ΝΕΑ ΚΡΟΥΣΜΑΤΑ ΑΝΑ ΗΜΕΡΑ"
     },
     "TotalCasesPerDay": {
-      "Title": "Total cases per day"
+      "Title": "ΣΥΝΟΛΙΚΑ ΚΡΟΥΣΜΑΤΑ ΑΝΑ ΗΜΕΡΑ"
     },
     "Age": {
-      "Title": "Age",
-      "AgerageAgeLabel": "Average age"
+      "Title": "ΗΛΙΚΙΑΚΗ ΚΑΤΑΝΟΜΗ",
+      "AgerageAgeLabel": "ΜΕΣΗ ΗΛΙΚΙΑ"
     },
     "Gender": {
-      "Title": "Gender",
-      "MaleLabel": "Male",
-      "FemaleLabel": "Female"
+      "Title": "ΦΥΛΟ",
+      "MaleLabel": "ΑΝΔΡΕΣ",
+      "FemaleLabel": "ΓΥΝΑΙΚΕΣ"
     }
   }
 }
