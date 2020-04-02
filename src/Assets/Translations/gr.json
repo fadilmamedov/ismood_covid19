@@ -13,20 +13,20 @@
   },
   "Cards": {
     "TotalCases": {
-      "Title": "Total cases",
+      "Title": "ΣΥΝΟΛΟ ΚΡΟΥΣΜΑΤΩΝ",
       "CriticalCasesLabel": "σε κρίσιμη κατάσταση"
     },
     "ActiveCases": {
-      "Title": "Active cases",
-      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
+      "Title": "ΕΝΕΡΓΑ ΚΡΟΥΣΜΑΤΑ",
+      "TotalCasesPercentLabel": "του συνόλου"
     },
     "RecoveredCases": {
-      "Title": "Recovered cases",
-      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
+      "Title": "ΕΧΟΥΝ ΑΝΑΡΡΩΣΕΙ",
+      "TotalCasesPercentLabel": "του συνόλου"
     },
     "DeathCases": {
-      "Title": "Deaths",
-      "TotalCasesPercentLabel": "του συνόλου κρουσμάτων"
+      "Title": "ΘΑΝΑΤΟΙ",
+      "TotalCasesPercentLabel": "του συνόλου"
     }
   },
   "Pages": {
