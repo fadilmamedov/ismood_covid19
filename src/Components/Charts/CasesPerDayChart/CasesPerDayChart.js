@@ -20,7 +20,8 @@ const ChartCardBody = styled(ChartCard.Body)`
 `;
 
 const CasesPerDayChartBase = ({ language, newCasesPerDay, totalCasesPerDay }) => {
-  const Strings = translations[language];
+  const { Title: NewCasesTitle } = translations[language].Charts.NewCasesPerDay;
+  const { Title: TotalCasesTitle } = translations[language].Charts.TotalCasesPerDay;
 
   const [selectedChart, setSelectedChart] = React.useState('new-cases-per-day');
 
@@ -82,8 +83,8 @@ const CasesPerDayChartBase = ({ language, newCasesPerDay, totalCasesPerDay }) =>
 
   const title = (
     <CasesPerDayChartHeader
-      newCasesTitle={Strings.Charts.NewCasesPerDay.Title}
-      totalCasesTitle={Strings.Charts.TotalCasesPerDay.Title}
+      newCasesTitle={NewCasesTitle}
+      totalCasesTitle={TotalCasesTitle}
       selectedChart={selectedChart}
       onSelectChart={(chart) => {
         setSelectedChart(chart);

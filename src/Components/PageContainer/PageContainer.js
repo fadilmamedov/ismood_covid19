@@ -29,7 +29,7 @@ const BackButton = styled(Link)`
 `;
 
 const PageContainerBase = ({ language, title, children }) => {
-  const Strings = translations[language];
+  const { BackToMainPageLink } = translations[language];
 
   return (
     <Container>
@@ -37,7 +37,7 @@ const PageContainerBase = ({ language, title, children }) => {
         <Title>{title}</Title>
 
         <BackButton to="/">
-          {Strings.BackToMainPageLink}
+          {BackToMainPageLink}
         </BackButton>
       </Header>
 
@@ -47,7 +47,7 @@ const PageContainerBase = ({ language, title, children }) => {
 };
 
 PageContainerBase.propTypes = {
-  laguage: types.string.isRequired,
+  language: types.string.isRequired,
   title: types.string.isRequired,
   children: types.node.isRequired,
 };

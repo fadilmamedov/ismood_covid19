@@ -22,7 +22,11 @@ const CasesPerDayBubbleChartBase = ({
   newCasesPerDay,
   totalCasesPerDay,
 }) => {
-  const Strings = translations[language];
+  const {
+    Title,
+    NewCasesLabel,
+    TotalCasesLabel,
+  } = translations[language].Charts.NewTotalCasesPerDay;
 
   const values = totalCasesPerDay.map((value, index) => ({
     ...value,
@@ -33,13 +37,13 @@ const CasesPerDayBubbleChartBase = ({
     datasets: [
       {
         type: 'bubble',
-        label: Strings.Charts.NewTotalCasesPerDay.NewCasesLabel,
+        label: NewCasesLabel,
         data: values,
         backgroundColor: 'rgba(238, 118, 76, 0.8)',
       },
       {
         type: 'line',
-        label: Strings.Charts.NewTotalCasesPerDay.TotalCasesLabel,
+        label: TotalCasesLabel,
         data: totalCasesPerDay,
         pointRadius: 0,
       },
@@ -82,7 +86,7 @@ const CasesPerDayBubbleChartBase = ({
   };
 
   return (
-    <ChartCard title={Strings.Charts.NewTotalCasesPerDay.Title}>
+    <ChartCard title={Title}>
       <ChartCardBody>
         <Bubble
           data={data}

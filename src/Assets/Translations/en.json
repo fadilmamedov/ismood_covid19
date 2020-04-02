@@ -57,7 +57,7 @@
     },
     "Age": {
       "Title": "Age",
-      "AgerageAgeLabel": "Average age"
+      "AverageAgeLabel": "Average age"
     },
     "Gender": {
       "Title": "Gender",

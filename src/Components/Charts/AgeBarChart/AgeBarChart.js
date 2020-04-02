@@ -24,7 +24,7 @@ const ChartCardBody = styled(ChartCard.Body)`
 `;
 
 const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
-  const Strings = translations[language];
+  const { Title: ChartTitle, AverageAgeLabel } = translations[language].Charts.Age;
 
   const data = {
     labels: r.keys(ageGroups),
@@ -42,9 +42,9 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
 
   const title = (
     <Title>
-      <span>{Strings.Charts.Age.Title}</span>
+      <span>{ChartTitle}</span>
 
-      <span>{Strings.Charts.Age.AgerageAgeLabel}: {averageAge.toFixed(1)}</span>
+      <span>{AverageAgeLabel}: {averageAge.toFixed(1)}</span>
     </Title>
   );
 

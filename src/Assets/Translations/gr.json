@@ -57,7 +57,7 @@
     },
     "Age": {
       "Title": "ΗΛΙΚΙΑΚΗ ΚΑΤΑΝΟΜΗ",
-      "AgerageAgeLabel": "ΜΕΣΗ ΗΛΙΚΙΑ"
+      "AverageAgeLabel": "ΜΕΣΗ ΗΛΙΚΙΑ"
     },
     "Gender": {
       "Title": "ΦΥΛΟ",
