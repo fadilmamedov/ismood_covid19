@@ -48,6 +48,7 @@ const CasesPerDayBubbleChartBase = ({
 
   const options = {
     legend: false,
+    tooltips: false,
     responsive: true,
     maintainAspectRatio: false,
     scales: {
