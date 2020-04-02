@@ -5,7 +5,7 @@ import {
 } from './app.actions';
 
 const initialState = {
-  language: 'en',
+  language: 'gr',
 };
 
 const reducer = {
