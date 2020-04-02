@@ -31,7 +31,7 @@ const GenderInfo = styled(GenderInfoBase)`
 `;
 
 const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
-  const Strings = translations[language];
+  const { Title, MaleLabel, FemaleLabel } = translations[language].Charts.Gender;
 
   const totalCount = maleCount + femaleCount;
 
@@ -42,8 +42,8 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
     }],
 
     labels: [
-      'Male',
-      'Female',
+      MaleLabel,
+      FemaleLabel,
     ]
   };
 
@@ -54,7 +54,7 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
   };
 
   return (
-    <ChartCard title={Strings.Charts.Gender.Title}>
+    <ChartCard title={Title}>
       <ChartCardBody>
         <Doughnut
           data={data}
@@ -67,7 +67,7 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
           <Row>
             <Col xs={6}>
               <GenderInfo
-                title={Strings.Charts.Gender.MaleLabel}
+                title={MaleLabel}
                 count={maleCount}
                 totalCount={totalCount}
                 color="#5e6268"
@@ -76,7 +76,7 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
 
             <Col xs={6}>
               <GenderInfo
-                title={Strings.Charts.Gender.FemaleLabel}
+                title={FemaleLabel}
                 count={femaleCount}
                 totalCount={totalCount}
                 color="#ee774c"
