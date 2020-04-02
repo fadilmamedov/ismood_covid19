@@ -51,6 +51,19 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
     legend: false,
     responsive: true,
     maintainAspectRatio: false,
+    tooltips: {
+      callbacks: {
+        label: (options, data) => {
+          const { index } = options;
+          const label = data.labels[index];
+          const value = data.datasets[0].data[index];
+
+          const percentage = (value / totalCount * 100).toFixed(2);
+
+          return ` ${label}: ${percentage}%`;
+        }
+      }
+    }
   };
 
   return (

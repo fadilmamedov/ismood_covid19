@@ -32,16 +32,6 @@ const ValueNumber = styled.h5`
   font-weight: normal;
 `;
 
-const ValueDescription = styled.small`
-  margin-left: 7px;
-  color: #c0ccda;
-  font-size: 14px;
-
-  @media screen and (max-width: 991px) {
-    font-size: 12px;
-  }
-`;
-
 const GenderInfo = ({ title, count, totalCount, color, className }) => {
   const valuePercent = count / totalCount * 100;
 
@@ -56,10 +46,6 @@ const GenderInfo = ({ title, count, totalCount, color, className }) => {
 
         <ValueNumber>
           {valuePercent.toFixed(2)}%
-
-          <ValueDescription>
-            {count}
-          </ValueDescription>
         </ValueNumber>
       </ValueContainer>
     </Container>
