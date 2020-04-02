@@ -1,8 +1,12 @@
 import React from 'react';
 import * as r from 'ramda';
 import types from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Bar } from 'react-chartjs-2';
+
+import { selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 import { ChartCard } from 'Components/Common';
 
@@ -19,7 +23,9 @@ const ChartCardBody = styled(ChartCard.Body)`
   }
 `;
 
-const AgeBarChart = ({ ageGroups, averageAge }) => {
+const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
+  const Strings = translations[language];
+
   const data = {
     labels: r.keys(ageGroups),
     datasets: [{
@@ -36,9 +42,9 @@ const AgeBarChart = ({ ageGroups, averageAge }) => {
 
   const title = (
     <Title>
-      <span>Age</span>
+      <span>{Strings.Charts.Age.Title}</span>
 
-      <span>Average age: {averageAge.toFixed(1)}</span>
+      <span>{Strings.Charts.Age.AgerageAgeLabel}: {averageAge.toFixed(1)}</span>
     </Title>
   );
 
@@ -54,9 +60,21 @@ const AgeBarChart = ({ ageGroups, averageAge }) => {
   )
 };
 
-AgeBarChart.propTypes = {
+AgeBarChartBase.propTypes = {
   ageGroups: types.objectOf(types.number).isRequired,
   averageAge: types.number.isRequired,
 };
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const AgeBarChart = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(AgeBarChartBase);
 
 export { AgeBarChart };

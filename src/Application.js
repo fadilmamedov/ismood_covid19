@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { actions, selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 import { Header, Footer, PageContainer } from 'Components';
 
@@ -32,11 +33,14 @@ const getPercentage = (value, totalValue) => {
 };
 
 const ApplicationBase = ({
+  language,
   totalInformation,
   dailyInformation,
   fetchTotalInformation,
   fetchDailyInformation,
 }) => {
+  const Strings = translations[language];
+
   React.useEffect(() => {
     fetchTotalInformation();
     fetchDailyInformation();
@@ -66,12 +70,12 @@ const ApplicationBase = ({
                 <Col sm={6} lg={3} className="mt-2">
                   <ChartLink to="/total-cases">
                     <InfoCard
-                      title="Total cases"
+                      title={Strings.Cards.TotalCases.Title}
                       value={totalCases}
                       timeseries={dailyInformation.map(r.prop('totalCases'))}
                       description={(
                         <CriticalValue>
-                          {criticalCases} critical
+                          {criticalCases} {Strings.Cards.TotalCases.CriticalCasesLabel}
                         </CriticalValue>
                       )}
                     />
@@ -81,10 +85,13 @@ const ApplicationBase = ({
                 <Col sm={6} lg={3} className="mt-2">
                   <ChartLink to="/active-cases">
                     <InfoCard
-                      title="Active cases"
+                      title={Strings.Cards.ActiveCases.Title}
                       value={activeCases}
                       timeseries={dailyInformation.map(r.prop('activeCases'))}
-                      description={`${getPercentage(activeCases, totalCases)}% of total cases`}
+                      description={`
+                        ${getPercentage(activeCases, totalCases)}%
+                        ${Strings.Cards.ActiveCases.TotalCasesPercentLabel}
+                      `}
                     />
                   </ChartLink>
                 </Col>
@@ -92,11 +99,14 @@ const ApplicationBase = ({
                 <Col sm={6} lg={3} className="mt-2">
                   <ChartLink to="/recovered-cases">
                     <InfoCard
-                      title="Recovered cases"
+                      title={Strings.Cards.RecoveredCases.Title}
                       value={recoveredCases}
                       valueColor="green"
                       timeseries={dailyInformation.map(r.prop('recoveredCases'))}
-                      description={`${getPercentage(recoveredCases, totalCases)}% of total cases`}
+                      description={`
+                        ${getPercentage(recoveredCases, totalCases)}%
+                        ${Strings.Cards.RecoveredCases.TotalCasesPercentLabel}
+                      `}
                     />
                   </ChartLink>
                 </Col>
@@ -104,11 +114,14 @@ const ApplicationBase = ({
                 <Col sm={6} lg={3} className="mt-2">
                   <ChartLink to="/death-cases">
                     <InfoCard
-                      title="Deaths"
+                      title={Strings.Cards.DeathCases.Title}
                       value={deathCases}
                       valueColor="#da1e1e"
                       timeseries={dailyInformation.map(r.prop('deathCases'))}
-                      description={`${getPercentage(deathCases, totalCases)}% of total cases`}
+                      description={`
+                        ${getPercentage(deathCases, totalCases)}%
+                        ${Strings.Cards.DeathCases.TotalCasesPercentLabel}
+                      `}
                     />
                   </ChartLink>
                 </Col>
@@ -157,7 +170,7 @@ const ApplicationBase = ({
           </Route>
 
           <Route path="/total-cases" exact>
-            <PageContainer title="Total cases">
+            <PageContainer title={Strings.Pages.TotalCases.Title}>
               <CasesLineChart
                 values={dailyInformation.map((entry) => ({
                   x: entry.date,
@@ -168,7 +181,7 @@ const ApplicationBase = ({
           </Route>
 
           <Route path="/active-cases" exact>
-            <PageContainer title="Active cases">
+            <PageContainer title={Strings.Pages.ActiveCases.Title}>
               <CasesLineChart
                 values={dailyInformation.map((entry) => ({
                   x: entry.date,
@@ -179,7 +192,7 @@ const ApplicationBase = ({
           </Route>
 
           <Route path="/recovered-cases" exact>
-            <PageContainer title="Recovered cases">
+            <PageContainer title={Strings.Pages.RecoveredCases.Title}>
               <CasesLineChart
                 values={dailyInformation.map((entry) => ({
                   x: entry.date,
@@ -190,7 +203,7 @@ const ApplicationBase = ({
           </Route>
 
           <Route path="/death-cases" exact>
-            <PageContainer title="Deaths">
+            <PageContainer title={Strings.Pages.DeathCases.Title}>
               <CasesLineChart
                 values={dailyInformation.map((entry) => ({
                   x: entry.date,
@@ -208,9 +221,14 @@ const ApplicationBase = ({
 };
 
 ApplicationBase.propTypes = {
+  language: types.string.isRequired,
   fetchTotalInformation: types.func.isRequired,
   fetchDailyInformation: types.func.isRequired,
 };
+
+const {
+  getLanguage,
+} = selectors.app;
 
 const {
   fetchTotalInformation,
@@ -225,6 +243,7 @@ const {
 const Application = r.compose(
   connect(
     r.applySpec({
+      language: getLanguage,
       totalInformation: getTotalInformation,
       dailyInformation: getDailyInformation,
     }),

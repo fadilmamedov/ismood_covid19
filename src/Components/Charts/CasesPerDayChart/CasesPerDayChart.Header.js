@@ -33,25 +33,32 @@ const HeaderTab = styled.button`
   }
 `;
 
-const CasesPerDayChartHeader = ({ selectedChart, onSelectChart }) => (
+const CasesPerDayChartHeader = ({
+  newCasesTitle,
+  totalCasesTitle,
+  selectedChart,
+  onSelectChart,
+}) => (
   <Container>
     <HeaderTab
       selected={selectedChart === 'new-cases-per-day'}
       onClick={() => onSelectChart('new-cases-per-day')}
     >
-      New cases per day
+      {newCasesTitle}
     </HeaderTab>
 
     <HeaderTab
       selected={selectedChart === 'total-cases-per-day'}
       onClick={() => onSelectChart('total-cases-per-day')}
     >
-      Total cases per day
+      {totalCasesTitle}
     </HeaderTab>
   </Container>
 );
 
 CasesPerDayChartHeader.propTypes = {
+  newCasesTitle: types.string.isRequired,
+  totalCasesTitle: types.string.isRequired,
   selectedChart: types.string.isRequired,
   onSelectChart: types.func.isRequired,
 };

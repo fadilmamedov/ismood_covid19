@@ -7,17 +7,24 @@ import { statisticsReducer } from './statistics/statistics.reducer';
 import * as statisticsActions from './statistics/statistics.actions';
 import * as statisticsSelectors from './statistics/statistics.selectors';
 
+import { appReducer } from './app/app.reducer';
+import * as appActions from './app/app.actions';
+import * as appSelectors from './app/app.selectors';
+
 const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
 const rootReducer = combineReducers({
+  app: appReducer,
   statistics: statisticsReducer,
 });
 
 const actions = {
+  app: appActions,
   statistics: statisticsActions,
 };
 
 const selectors = {
+  app: appSelectors,
   statistics: statisticsSelectors,
 };
 

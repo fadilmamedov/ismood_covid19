@@ -1,6 +1,12 @@
 import React from 'react';
+import * as r from 'ramda';
+import types from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Bar, Line } from 'react-chartjs-2';
+
+import { selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 import { ChartCard as ChartCardBase } from 'Components/Common';
 import { CasesPerDayChartHeader } from './CasesPerDayChart.Header';
@@ -13,7 +19,9 @@ const ChartCardBody = styled(ChartCard.Body)`
   height: 400px;
 `;
 
-const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
+const CasesPerDayChartBase = ({ language, newCasesPerDay, totalCasesPerDay }) => {
+  const Strings = translations[language];
+
   const [selectedChart, setSelectedChart] = React.useState('new-cases-per-day');
 
   const scrollPosition = window.scrollY;
@@ -74,6 +82,8 @@ const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
 
   const title = (
     <CasesPerDayChartHeader
+      newCasesTitle={Strings.Charts.NewCasesPerDay.Title}
+      totalCasesTitle={Strings.Charts.TotalCasesPerDay.Title}
       selectedChart={selectedChart}
       onSelectChart={(chart) => {
         setSelectedChart(chart);
@@ -100,6 +110,22 @@ const CasesPerDayChart = ({ newCasesPerDay, totalCasesPerDay }) => {
       </ChartCardBody>
     </ChartCard>
   )
-}
+};
+
+CasesPerDayChartBase.propTypes = {
+  language: types.string.isRequired,
+};
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const CasesPerDayChart = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(CasesPerDayChartBase);
 
 export { CasesPerDayChart };

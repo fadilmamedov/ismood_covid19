@@ -1,8 +1,13 @@
 import React from 'react';
+import * as r from 'ramda';
 import types from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { Container} from 'react-bootstrap';
+
+import { selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 const Header = styled.div`
   display: flex;
@@ -23,23 +28,40 @@ const BackButton = styled(Link)`
   text-decoration: underline;
 `;
 
-const PageContainer = ({ title, children }) => (
-  <Container>
-    <Header>
-      <Title>{title}</Title>
+const PageContainerBase = ({ language, title, children }) => {
+  const Strings = translations[language];
 
-      <BackButton to="/">
-        Go to main page
-      </BackButton>
-    </Header>
+  return (
+    <Container>
+      <Header>
+        <Title>{title}</Title>
 
-    {children}
-  </Container>
-);
+        <BackButton to="/">
+          {Strings.BackToMainPageLink}
+        </BackButton>
+      </Header>
 
-PageContainer.propTypes = {
+      {children}
+    </Container>
+  );
+};
+
+PageContainerBase.propTypes = {
+  laguage: types.string.isRequired,
   title: types.string.isRequired,
   children: types.node.isRequired,
 };
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const PageContainer = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(PageContainerBase);
 
 export { PageContainer };

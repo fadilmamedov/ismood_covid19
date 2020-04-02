@@ -1,8 +1,13 @@
 import React from 'react';
+import * as r from 'ramda';
 import types from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Doughnut } from 'react-chartjs-2';
 import { Container, Row, Col } from 'react-bootstrap';
+
+import { selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 import { ChartCard as ChartCardBase } from 'Components/Common';
 import { GenderInfo as GenderInfoBase } from './GenderInfo';
@@ -25,7 +30,9 @@ const GenderInfo = styled(GenderInfoBase)`
   }
 `;
 
-const GenderPieChart = ({ maleCount, femaleCount }) => {
+const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
+  const Strings = translations[language];
+
   const totalCount = maleCount + femaleCount;
 
   const data = {
@@ -47,7 +54,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
   };
 
   return (
-    <ChartCard title="Gender">
+    <ChartCard title={Strings.Charts.Gender.Title}>
       <ChartCardBody>
         <Doughnut
           data={data}
@@ -60,7 +67,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
           <Row>
             <Col xs={6}>
               <GenderInfo
-                title="Male"
+                title={Strings.Charts.Gender.MaleLabel}
                 count={maleCount}
                 totalCount={totalCount}
                 color="#5e6268"
@@ -69,7 +76,7 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
 
             <Col xs={6}>
               <GenderInfo
-                title="Female"
+                title={Strings.Charts.Gender.FemaleLabel}
                 count={femaleCount}
                 totalCount={totalCount}
                 color="#ee774c"
@@ -82,9 +89,22 @@ const GenderPieChart = ({ maleCount, femaleCount }) => {
   );
 }
 
-GenderPieChart.propTypes = {
+GenderPieChartBase.propTypes = {
+  language: types.string.isRequired,
   maleCount: types.number.isRequired,
   femaleCount: types.number.isRequired,
 };
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const GenderPieChart = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(GenderPieChartBase);
 
 export { GenderPieChart };

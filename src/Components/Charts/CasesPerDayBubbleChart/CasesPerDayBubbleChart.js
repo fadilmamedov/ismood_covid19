@@ -1,6 +1,11 @@
 import React from 'react';
+import * as r from 'ramda';
+import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Bubble } from 'react-chartjs-2';
+
+import { selectors } from 'Store';
+import * as translations from 'Assets/Translations';
 
 import { ChartCard as ChartCardBase } from 'Components/Common';
 
@@ -12,7 +17,13 @@ const ChartCardBody = styled(ChartCard.Body)`
   height: 400px;
 `;
 
-const CasesPerDayBubbleChart = ({ newCasesPerDay, totalCasesPerDay }) => {
+const CasesPerDayBubbleChartBase = ({
+  language,
+  newCasesPerDay,
+  totalCasesPerDay,
+}) => {
+  const Strings = translations[language];
+
   const values = totalCasesPerDay.map((value, index) => ({
     ...value,
     r: newCasesPerDay[index].y / 5,
@@ -22,16 +33,15 @@ const CasesPerDayBubbleChart = ({ newCasesPerDay, totalCasesPerDay }) => {
     datasets: [
       {
         type: 'bubble',
-        label: 'New cases per day',
+        label: Strings.Charts.NewTotalCasesPerDay.NewCasesLabel,
         data: values,
         backgroundColor: 'rgba(238, 118, 76, 0.8)',
       },
       {
         type: 'line',
-        label: 'Total cases per day',
+        label: Strings.Charts.NewTotalCasesPerDay.TotalCasesLabel,
         data: totalCasesPerDay,
-        pointRadius: 2,
-        pointBackgroundColor: '#5c7080',
+        pointRadius: 0,
       },
     ]
   };
@@ -71,7 +81,7 @@ const CasesPerDayBubbleChart = ({ newCasesPerDay, totalCasesPerDay }) => {
   };
 
   return (
-    <ChartCard title="New / total cases per day">
+    <ChartCard title={Strings.Charts.NewTotalCasesPerDay.Title}>
       <ChartCardBody>
         <Bubble
           data={data}
@@ -80,6 +90,18 @@ const CasesPerDayBubbleChart = ({ newCasesPerDay, totalCasesPerDay }) => {
       </ChartCardBody>
     </ChartCard>
   )
-}
+};
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const CasesPerDayBubbleChart = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(CasesPerDayBubbleChartBase);
 
 export { CasesPerDayBubbleChart };

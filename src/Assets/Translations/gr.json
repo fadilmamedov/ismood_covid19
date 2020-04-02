@@ -1,0 +1,67 @@
+{
+  "BackToMainPageLink": "Go to main page",
+  "Header": {
+    "CountryName": "Greece"
+  },
+  "Footer": {
+    "InformationSourceDescription": {
+      "Prefix": "Statistical data collected through",
+      "And": "and"
+    },
+    "DownloadImageButton": "Download as image"
+  },
+  "Cards": {
+    "TotalCases": {
+      "Title": "Total cases",
+      "CriticalCasesLabel": "critical"
+    },
+    "ActiveCases": {
+      "Title": "Active cases",
+      "TotalCasesPercentLabel": "of total cases"
+    },
+    "RecoveredCases": {
+      "Title": "Recovered cases",
+      "TotalCasesPercentLabel": "of total cases"
+    },
+    "DeathCases": {
+      "Title": "Deaths",
+      "TotalCasesPercentLabel": "of total cases"
+    }
+  },
+  "Pages": {
+    "TotalCases": {
+      "Title": "Total cases"
+    },
+    "ActiveCases": {
+      "Title": "Active cases"
+    },
+    "RecoveredCases": {
+      "Title": "Recovered cases"
+    },
+    "DeathCases": {
+      "Title": "Deaths"
+    }
+  },
+  "Charts": {
+    "NewTotalCasesPerDay": {
+      "Title": "New / Total cases per day",
+      "NewCasesLabel": "New cases per day",
+      "TotalCasesLabel": "Total cases per day"
+    },
+    "NewCasesPerDay": {
+      "Title": "New cases per day"
+    },
+    "TotalCasesPerDay": {
+      "Title": "Total cases per day"
+    },
+    "Age": {
+      "Title": "Age",
+      "AgerageAgeLabel": "Average age"
+    },
+    "Gender": {
+      "Title": "Gender",
+      "MaleLabel": "Male",
+      "FemaleLabel": "Female"
+    }
+  }
+}

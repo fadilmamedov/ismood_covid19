@@ -1,14 +1,19 @@
 import React from 'react';
+import * as r from 'ramda';
+import types from 'prop-types';
+import { connect } from 'react-redux';
 import html2canvas from 'html2canvas';
 import styled from 'styled-components/macro';
 import { Navbar as NavbarBase } from 'react-bootstrap';
 
+import { selectors } from 'Store';
 import { saveToFile } from 'Utilities';
+import * as translations from 'Assets/Translations';
 
 const Navbar = styled(NavbarBase)`
   color: #5c7080;
   font-size: 14px;
-  box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,.2);
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, .1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, .2);
 `;
 
 const ExternalLink = styled.a.attrs({
@@ -28,7 +33,9 @@ const DownloadImageButton = styled.button`
   }
 `;
 
-const Footer = () => {
+const FooterBase = ({ language }) => {
+  const Strings = translations[language];
+
   const handleDownloadImageButtonClick = React.useCallback(() => {
     // TODO:
     // refactor this
@@ -58,15 +65,33 @@ const Footer = () => {
 
   return (
     <Navbar bg="light" fixed="bottom" className="footer">
-      Statistical data collected through
-      <ExternalLink href="https://www.who.int/">WHO</ExternalLink> and
+      {Strings.Footer.InformationSourceDescription.Prefix}
+
+      <ExternalLink href="https://www.who.int/">WHO</ExternalLink>
+      {Strings.Footer.InformationSourceDescription.And}
       <ExternalLink href="https://eody.gov.gr/en">NPHO</ExternalLink>
 
       <DownloadImageButton onClick={handleDownloadImageButtonClick}>
-        Download as image
+        {Strings.Footer.DownloadImageButton}
       </DownloadImageButton>
     </Navbar>
   )
-}
+};
+
+FooterBase.propTypes = {
+  language: types.string.isRequired,
+};
+
+const {
+  getLanguage,
+} = selectors.app;
+
+const Footer = r.compose(
+  connect(
+    r.applySpec({
+      language: getLanguage,
+    })
+  )
+)(FooterBase);
 
 export { Footer };
