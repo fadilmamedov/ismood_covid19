@@ -48,7 +48,7 @@ const FooterBase = ({ language }) => {
   }, []);
 
   return (
-    <Navbar bg="light" className="footer">
+    <Navbar bg="light" fixed="bottom" className="footer">
       <InformationSourceDescription>
         {Strings.Footer.InformationSourceDescription.Prefix}
 
