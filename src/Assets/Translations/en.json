@@ -61,5 +61,10 @@
       "MaleLabel": "Male",
       "FemaleLabel": "Female"
     }
+  },
+  "Maps": {
+    "Greece": {
+      "Title": "Greece"
+    }
   }
 }

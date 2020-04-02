@@ -20,6 +20,10 @@ import {
 } from 'Components/Charts';
 
 import {
+  GreeceRegionsMap,
+} from 'Components/Maps';
+
+import {
   InfoCard,
   ChartLink,
   CriticalValue,
@@ -36,6 +40,7 @@ const ApplicationBase = ({
   language,
   totalInformation,
   dailyInformation,
+  regionsInformation,
   fetchTotalInformation,
   fetchDailyInformation,
   fetchRegionsInformation,
@@ -167,6 +172,12 @@ const ApplicationBase = ({
                     femaleCount={femaleCount}
                   />
                 </Col>
+
+                <Col xs={12} className="mt-2">
+                  <GreeceRegionsMap
+                    regionsInformation={regionsInformation}
+                  />
+                </Col>
               </Row>
             </Container>
           </Route>
@@ -226,6 +237,7 @@ ApplicationBase.propTypes = {
   language: types.string.isRequired,
   fetchTotalInformation: types.func.isRequired,
   fetchDailyInformation: types.func.isRequired,
+  fetchRegionsInformation: types.func.isRequired,
 };
 
 const {
@@ -241,6 +253,7 @@ const {
 const {
   getTotalInformation,
   getDailyInformation,
+  getRegionsInformation,
 } = selectors.statistics;
 
 const Application = r.compose(
@@ -249,6 +262,7 @@ const Application = r.compose(
       language: getLanguage,
       totalInformation: getTotalInformation,
       dailyInformation: getDailyInformation,
+      regionsInformation: getRegionsInformation,
     }),
     {
       fetchTotalInformation,
