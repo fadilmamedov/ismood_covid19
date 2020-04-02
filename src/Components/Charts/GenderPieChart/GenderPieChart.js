@@ -67,19 +67,19 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
           <Row>
             <Col xs={6}>
               <GenderInfo
-                title={MaleLabel}
-                count={maleCount}
+                title={FemaleLabel}
+                count={femaleCount}
                 totalCount={totalCount}
-                color="#5e6268"
+                color="#ee774c"
               />
             </Col>
 
             <Col xs={6}>
               <GenderInfo
-                title={FemaleLabel}
-                count={femaleCount}
+                title={MaleLabel}
+                count={maleCount}
                 totalCount={totalCount}
-                color="#ee774c"
+                color="#5e6268"
               />
             </Col>
           </Row>
