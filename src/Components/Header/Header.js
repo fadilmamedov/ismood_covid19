@@ -59,6 +59,16 @@ const LanguageButton = styled.button`
     color: white;
     background-color: #f1763c;
   `}
+
+  ${props => props.selected === false && `
+    &:last-child {
+      padding-left: 0;
+    }
+
+    &:first-child {
+      padding-right: 0;
+    }
+  `}
 `;
 
 const LanguageDivider = styled.span`

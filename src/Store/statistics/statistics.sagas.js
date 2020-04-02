@@ -8,6 +8,8 @@ import {
   fetchTotalInformationSuccess,
   fetchDailyInformation,
   fetchDailyInformationSuccess,
+  fetchRegionsInformation,
+  fetchRegionsInformationSuccess,
 } from './statistics.actions';
 
 import {
@@ -37,9 +39,15 @@ const fetchDailyInformationSaga = function* () {
   yield put(fetchTotalInformationSuccess(totalInformation));
 };
 
+const fetchRegionsInformationSaga = function* () {
+  const regionsInformation = yield call(api.fetchRegionsInformation);
+  yield put(fetchRegionsInformationSuccess(regionsInformation));
+};
+
 const statisticsSaga = function* () {
   yield takeLatest(fetchTotalInformation, fetchTotalInformationSaga);
   yield takeLatest(fetchDailyInformation, fetchDailyInformationSaga);
+  yield takeLatest(fetchRegionsInformation, fetchRegionsInformationSaga);
 };
 
 export { statisticsSaga };

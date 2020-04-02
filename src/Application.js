@@ -38,13 +38,15 @@ const ApplicationBase = ({
   dailyInformation,
   fetchTotalInformation,
   fetchDailyInformation,
+  fetchRegionsInformation,
 }) => {
   const Strings = translations[language];
 
   React.useEffect(() => {
     fetchTotalInformation();
     fetchDailyInformation();
-  }, [fetchTotalInformation, fetchDailyInformation]);
+    fetchRegionsInformation();
+  }, [fetchTotalInformation, fetchDailyInformation, fetchRegionsInformation]);
 
   const {
     totalCases = 0,
@@ -233,6 +235,7 @@ const {
 const {
   fetchTotalInformation,
   fetchDailyInformation,
+  fetchRegionsInformation,
 } = actions.statistics;
 
 const {
@@ -250,6 +253,7 @@ const Application = r.compose(
     {
       fetchTotalInformation,
       fetchDailyInformation,
+      fetchRegionsInformation,
     },
   )
 )(ApplicationBase);

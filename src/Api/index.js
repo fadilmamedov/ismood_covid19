@@ -67,4 +67,21 @@ const fetchDailyInformation = async () => {
   return r.sortBy(r.prop('date'))(results);
 }
 
-export { fetchTotalInformation, fetchDailyInformation };
+const fetchRegionsInformation = async () => {
+  const { data } = await axios.get(
+    'https://covidapi.ismood.com/regions/?country_name=greece',
+    { auth }
+  );
+
+  return data.results.map((entry) => ({
+      casesCount: entry.region_cases,
+      enName: entry.region_en_name,
+      grName: entry.region_gr_name,
+  }));
+}
+
+export {
+  fetchTotalInformation,
+  fetchDailyInformation,
+  fetchRegionsInformation,
+};
