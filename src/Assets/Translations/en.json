@@ -4,7 +4,11 @@
     "CountryName": "Greece"
   },
   "Footer": {
-    "InformationSourceDescription": "Statistical data collected through",
+    "InformationSourceDescription": {
+      "Prefix": "Statistical data collected through",
+      "WHO": "WHO",
+      "NPHO": "NPHO"
+    },
     "ContactUsLink": "Contact Us",
     "DownloadImageButton": "Download as image"
   },

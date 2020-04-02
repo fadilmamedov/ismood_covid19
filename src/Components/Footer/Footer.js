@@ -54,11 +54,15 @@ const FooterBase = ({ language }) => {
   return (
     <Navbar bg="light" fixed="bottom" className="footer">
       <InformationSourceDescription>
-        {InformationSourceDescriptionText}
+        {InformationSourceDescriptionText.Prefix}
 
-        <ExternalLink href="https://www.who.int/">WHO</ExternalLink>
+        <ExternalLink href="https://www.who.int/">
+          {InformationSourceDescriptionText.WHO}
+        </ExternalLink>
         &
-        <ExternalLink href="https://eody.gov.gr/en">NPHO</ExternalLink>
+        <ExternalLink href="https://eody.gov.gr/en">
+          {InformationSourceDescriptionText.NPHO}
+        </ExternalLink>
       </InformationSourceDescription>
 
       <RightContainer>

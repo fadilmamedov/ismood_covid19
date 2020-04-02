@@ -4,7 +4,11 @@
     "CountryName": "Ελλάδα"
   },
   "Footer": {
-    "InformationSourceDescription": "Τα δεδομένα συλλέγονται από",
+    "InformationSourceDescription": {
+      "Prefix": "Τα δεδομένα συλλέγονται από",
+      "WHO": "ΠΟΥ",
+      "NPHO": "ΕΟΔΥ"
+    },
     "ContactUsLink": "Επικοινωνία",
     "DownloadImageButton": "Αποθήκευση σε εικόνα"
   },
