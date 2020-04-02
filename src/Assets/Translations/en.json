@@ -45,7 +45,7 @@
   },
   "Charts": {
     "NewTotalCasesPerDay": {
-      "Title": "New / Total cases per day",
+      "Title": "New cases per day / Total cases per day",
       "NewCasesLabel": "New cases per day",
       "TotalCasesLabel": "Total cases per day"
     },
