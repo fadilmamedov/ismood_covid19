@@ -18,7 +18,11 @@ import {
 } from './Footer.Components';
 
 const FooterBase = ({ language }) => {
-  const Strings = translations[language];
+  const {
+    ContactUsLink: ContactUsLinkText,
+    DownloadImageButton: DownloadImageButtonText,
+    InformationSourceDescription: InformationSourceDescriptionText,
+  } = translations[language].Footer;
 
   const handleDownloadImageButtonClick = React.useCallback(() => {
     // TODO:
@@ -50,20 +54,20 @@ const FooterBase = ({ language }) => {
   return (
     <Navbar bg="light" fixed="bottom" className="footer">
       <InformationSourceDescription>
-        {Strings.Footer.InformationSourceDescription.Prefix}
+        {InformationSourceDescriptionText}
 
         <ExternalLink href="https://www.who.int/">WHO</ExternalLink>
-        {Strings.Footer.InformationSourceDescription.And}
+        &
         <ExternalLink href="https://eody.gov.gr/en">NPHO</ExternalLink>
       </InformationSourceDescription>
 
       <RightContainer>
         <ContactUsLink href="mailto: covid19@ismood.com">
-          {Strings.Footer.ContactUsLink}
+          {ContactUsLinkText}
         </ContactUsLink>
 
         <DownloadImageButton onClick={handleDownloadImageButtonClick}>
-          {Strings.Footer.DownloadImageButton}
+          {DownloadImageButtonText}
         </DownloadImageButton>
       </RightContainer>
     </Navbar>
