@@ -5,14 +5,12 @@ const Title = styled.h6`
   margin-bottom: 7px;
   font-size: 14px;
   font-weight: 500;
-  font-family: Rubik;
   text-transform: uppercase;
 `;
 
 const Value = styled.h3`
   margin-bottom: 0;
   font-weight: normal;
-  font-family: Rubik;
   color: ${props => props.color};
 `;
 

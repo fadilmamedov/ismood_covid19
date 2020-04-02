@@ -7,7 +7,6 @@ const Title = styled(Card.Header)`
   background: transparent;
   font-size: 14px;
   font-weight: 500;
-  font-family: Rubik;
   text-transform: uppercase;
 `;
 

@@ -19,7 +19,6 @@ const Title = styled.h1`
   margin: 0;
   font-size: 24px;
   font-weight: normal;
-  font-family: Rubik;
 `;
 
 const BackButton = styled(Link)`

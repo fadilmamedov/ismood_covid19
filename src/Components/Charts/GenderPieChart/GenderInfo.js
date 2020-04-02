@@ -15,7 +15,6 @@ const Title = styled.p`
 const ValueContainer = styled.div`
   display: flex;
   align-items: center;
-  font-family: Rubik;
 `;
 
 const ColorIndicator = styled.div`
