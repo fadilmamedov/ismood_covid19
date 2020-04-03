@@ -12,6 +12,7 @@ import { ChartCard } from 'Components/Common';
 
 import { MapRegion } from './MapRegion';
 import { Regions as regions } from './GreeceRegionMap.Regions';
+import { GreeceRegionsMapHeader } from './GreeceRegionsMap.Header';
 
 const RegionEntry = styled.div`
   display: flex;
@@ -56,8 +57,16 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
     setSelectedRegion(regionName);
   }, [setSelectedRegion])
 
+
+  const titleElement = (
+    <GreeceRegionsMapHeader
+      title={Title}
+      maxCasesCount={maxCasesCount}
+    />
+  );
+
   return (
-    <ChartCard title={Title}>
+    <ChartCard title={titleElement}>
       <ChartCard.Body>
         <Container>
           <Row>

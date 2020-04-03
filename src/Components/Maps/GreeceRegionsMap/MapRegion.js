@@ -11,7 +11,7 @@ const getColorAndOpacity = (casesCount, maxCasesCount) => {
 
   return {
     color: 'red',
-    opacity: casesCount / maxCasesCount + 0.2,
+    opacity: (casesCount / maxCasesCount) * 0.8 + 0.2,
   };
 }
 
