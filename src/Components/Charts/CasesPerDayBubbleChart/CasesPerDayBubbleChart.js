@@ -52,7 +52,22 @@ const CasesPerDayBubbleChartBase = ({
 
   const options = {
     legend: false,
-    tooltips: false,
+    tooltips: {
+      callbacks: {
+        label: (options, data) => {
+          const { index, datasetIndex } = options;
+
+          if (datasetIndex === 1) {
+            return '';
+          }
+
+          const dataset = data.datasets[datasetIndex];
+          const { x, y, r } = dataset.data[index];
+
+          return `[${x}] ${TotalCasesLabel}: ${y}, ${NewCasesLabel}: ${r * 5}`;
+        }
+      }
+    },
     responsive: true,
     maintainAspectRatio: false,
     scales: {
