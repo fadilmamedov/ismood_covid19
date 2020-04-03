@@ -134,7 +134,7 @@ const ApplicationBase = ({
                 </Col>
 
                 <Col xs={12} className="mt-2">
-                  <CasesPerDayBubbleChart
+                  <CasesPerDayChart
                     newCasesPerDay={dailyInformation.map(entry => ({
                       x: entry.date,
                       y: entry.newCases,
@@ -147,7 +147,7 @@ const ApplicationBase = ({
                 </Col>
 
                 <Col xs={12} className="mt-2">
-                  <CasesPerDayChart
+                  <CasesPerDayBubbleChart
                     newCasesPerDay={dailyInformation.map(entry => ({
                       x: entry.date,
                       y: entry.newCases,
