@@ -29,6 +29,15 @@ const CasesCount = styled.span`
   font-weight: 500;
 `;
 
+const sortRegionsInformation = (regionsInformation) => {
+  const knownRegions = regionsInformation.filter(region => region.enName !== 'Uknown Location');
+  const unknownRegions = regionsInformation.filter(region => region.enName === 'Uknown Location');
+
+  const sortByCasesCount = r.sortBy(r.prop('casesCount'));
+
+  return [...sortByCasesCount(knownRegions).reverse(), ...unknownRegions];
+};
+
 const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
   const [selectedRegion, setSelectedRegion] = React.useState(null);
 
@@ -55,7 +64,6 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
             <Col lg={8}>
               <svg
                 width="100%"
-                // height="auto"
                 viewBox="0 0 918 792"
               >
                 {r.keys(regions).map((title) => {
@@ -75,7 +83,7 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
             </Col>
 
             <Col lg={4}>
-              {regionsInformation.map(({ casesCount, enName, grName }) => (
+              {sortRegionsInformation(regionsInformation).map(({ casesCount, enName, grName }) => (
                 <RegionEntry key={enName} onMouseOver={handleRegionMouseOver(enName)}>
                   {language === 'en' ? enName : grName}
 
@@ -95,6 +103,11 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
 
 GreeceRegionsMapBase.propTypes = {
   language: types.string.isRequired,
+  regionsInformation: types.arrayOf(types.shape({
+    casesCount: types.number.isRequired,
+    enName: types.string.isRequired,
+    grName: types.string.isRequired,
+  })),
 };
 
 const {
