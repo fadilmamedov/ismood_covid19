@@ -19,12 +19,20 @@ const Title = styled.h1`
   margin: 0;
   font-size: 24px;
   font-weight: normal;
+
+  @media screen and (max-width: 575px) {
+    font-size: 18px;
+  }
 `;
 
 const BackButton = styled(Link)`
   margin-left: auto;
   color: black;
   text-decoration: underline;
+
+  @media screen and (max-width: 575px) {
+    font-size: 12px;
+  }
 `;
 
 const PageContainerBase = ({ language, title, children }) => {
