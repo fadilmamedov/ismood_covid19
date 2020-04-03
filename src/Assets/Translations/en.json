@@ -9,7 +9,7 @@
       "WHO": "WHO",
       "NPHO": "NPHO"
     },
-    "ContactUsLink": "Contact Us",
+    "ContactUsLink": "Do you need more analysis? Contact us",
     "DownloadImageButton": "Download as image"
   },
   "Cards": {
@@ -46,7 +46,7 @@
   },
   "Charts": {
     "NewTotalCasesPerDay": {
-      "Title": "New cases per day / Total cases per day",
+      "Title": "New cases per day / Total cases",
       "NewCasesLabel": "New cases",
       "TotalCasesLabel": "Total cases"
     },
@@ -54,7 +54,7 @@
       "Title": "New cases per day"
     },
     "TotalCasesPerDay": {
-      "Title": "Total cases per day"
+      "Title": "Total cases evolution"
     },
     "Age": {
       "Title": "Age",

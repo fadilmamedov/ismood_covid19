@@ -9,7 +9,6 @@ import { actions, selectors } from 'Store';
 import * as translations from 'Assets/Translations';
 
 import LogoImage from 'Assets/Images/Logo.png';
-import LogoImageSmall from 'Assets/Images/LogoSmall.png';
 
 const Navbar = styled(NavbarBase)`
   display: flex;
@@ -22,7 +21,7 @@ const TitleContainer = styled.div`
 `;
 
 const Logo = styled.img.attrs(({ small }) => ({
-  src: small ? LogoImageSmall : LogoImage,
+  src: LogoImage,
   alt: 'isMood'
 }))`
   height: 50px;
@@ -33,6 +32,10 @@ const Title = styled.p`
   margin-left: 20px;
   margin-bottom: 0;
   font-size: 22px;
+
+  @media screen and (max-width: 575px) {
+    font-size: 14px;
+  }
 `;
 
 const CountryName = styled.span`
@@ -82,8 +85,7 @@ const HeaderBase = ({ language, setLanguage }) => {
     <Navbar bg="light" fixed="top" className="header">
       <TitleContainer>
         <a href="https://www.ismood.com/">
-          <Logo className="d-none d-sm-block" />
-          <Logo small className="d-block d-sm-none" />
+          <Logo />
         </a>
 
         <Title>

@@ -24,13 +24,17 @@ const RightContainer = styled.div`
 
   @media screen and (max-width: 575px) {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 0;
     justify-content: space-between;
   }
 `;
 
-const ContactUsLink = styled.a``;
+const ContactUsLink = styled.a`
+  @media screen and (max-width: 575px) {
+    font-size: 12px;
+  }
+`;
 
 const DownloadImageButton = styled.button`
   margin-left: 20px;
@@ -38,9 +42,14 @@ const DownloadImageButton = styled.button`
   border: 0;
   color: #007bff;
   background: transparent;
+  white-space: nowrap;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media screen and (max-width: 575px) {
+    font-size: 12px;
   }
 `;
 
