@@ -8,6 +8,8 @@ import { selectors } from 'Store';
 import { saveToFile } from 'Utilities';
 import * as translations from 'Assets/Translations';
 
+import { GreeceRegionsMap } from 'Components/Maps';
+
 import {
   Navbar,
   ExternalLink,
@@ -39,6 +41,8 @@ const FooterBase = ({ language }) => {
     const scrollPosition = window.scrollY;
     window.scrollTo(0, 0);
 
+    GreeceRegionsMap.setFixedWidth();
+
     html2canvas(document.querySelector("#root")).then(canvas => {
       saveToFile(canvas.toDataURL(), 'covid19-dashboard.png');
 
@@ -48,6 +52,8 @@ const FooterBase = ({ language }) => {
       contentContainer.style.marginBottom = '50px';
 
       window.scrollTo(0, scrollPosition);
+
+      GreeceRegionsMap.setFullWidth();
     });
   }, []);
 

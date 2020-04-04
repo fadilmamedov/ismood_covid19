@@ -55,8 +55,11 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
 
   const handleRegionMouseOver = React.useCallback((regionName) => () => {
     setSelectedRegion(regionName);
-  }, [setSelectedRegion])
+  }, [setSelectedRegion]);
 
+  const handleRegionMouseOut = React.useCallback((regionName) => () => {
+    setSelectedRegion(null);
+  }, [setSelectedRegion]);
 
   const titleElement = (
     <GreeceRegionsMapHeader
@@ -74,6 +77,7 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
               <svg
                 width="100%"
                 viewBox="0 0 918 792"
+                className="regions-map"
               >
                 {r.keys(regions).map((title) => {
                   const { casesCount = 0 } = regionsInformationObject[title] || {};
@@ -93,7 +97,11 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
 
             <Col lg={4}>
               {sortRegionsInformation(regionsInformation).map(({ casesCount, enName, grName }) => (
-                <RegionEntry key={enName} onMouseOver={handleRegionMouseOver(enName)}>
+                <RegionEntry
+                  key={enName}
+                  onMouseOver={handleRegionMouseOver(enName)}
+                  onMouseOut={handleRegionMouseOut(enName)}
+                >
                   {language === 'en' ? enName : grName}
 
                   <CasesCount>
@@ -108,6 +116,16 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
       </ChartCard.Body>
     </ChartCard>
   );
+};
+
+GreeceRegionsMapBase.setFixedWidth = () => {
+  const regionsMap = document.querySelector('.regions-map');
+  regionsMap.setAttribute('width', regionsMap.clientWidth);
+};
+
+GreeceRegionsMapBase.setFullWidth = () => {
+  const regionsMap = document.querySelector('.regions-map');
+  regionsMap.setAttribute('width', '100%');
 };
 
 GreeceRegionsMapBase.propTypes = {
