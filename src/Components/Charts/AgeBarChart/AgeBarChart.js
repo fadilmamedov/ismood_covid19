@@ -26,6 +26,11 @@ const ChartCardBody = styled(ChartCard.Body)`
 const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
   const { Title: ChartTitle, AverageAgeLabel } = translations[language].Charts.Age;
 
+  console.log('[user]', { ageGroups });
+
+  const totalCases = r.sum(r.values(ageGroups));
+  console.log('[user]', { totalCases });
+
   const data = {
     labels: r.keys(ageGroups),
     datasets: [{
