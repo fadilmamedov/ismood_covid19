@@ -26,15 +26,20 @@ const ChartCardBody = styled(ChartCard.Body)`
 const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
   const { Title: ChartTitle, AverageAgeLabel } = translations[language].Charts.Age;
 
-  console.log('[user]', { ageGroups });
+  const labels = r.pipe(
+    r.keys,
+    r.sort((a, b) => parseInt(a) - parseInt(b))
+  )(ageGroups);
 
-  const totalCases = r.sum(r.values(ageGroups));
-  console.log('[user]', { totalCases });
+  const totalCases = r.compose(
+    r.sum,
+    r.values
+  )(ageGroups);
 
   const data = {
-    labels: r.keys(ageGroups),
+    labels,
     datasets: [{
-      data: r.values(ageGroups),
+      data: r.values(ageGroups).map(value => value / totalCases * 100),
       backgroundColor: '#ee774c'
     }]
   };
@@ -43,6 +48,25 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
     legend: false,
     responsive: true,
     maintainAspectRatio: false,
+    tooltips: {
+      callbacks: {
+        label: (options, data) => {
+          const { index, datasetIndex } = options;
+          const dataset = data.datasets[datasetIndex];
+          const percentageValue = dataset.data[index];
+
+          return `${percentageValue.toFixed(2)}%`;
+        }
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 100,
+        }
+      }]
+    }
   };
 
   const title = (
