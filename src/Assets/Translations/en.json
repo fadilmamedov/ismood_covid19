@@ -59,6 +59,7 @@
     "Age": {
       "Title": "Age",
       "AverageAgeLabel": "Average age",
+      "AverageDeathAgeLabel": "Average death age",
       "Fields": {
         "Cases": "Cases",
         "Deaths": "Deaths"
