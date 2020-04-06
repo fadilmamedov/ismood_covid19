@@ -60,10 +60,11 @@ const getDataForCasesField = (ageGroups, fieldName) => (
   r.values(ageGroups[fieldName]).map(value => value / getTotalCases(ageGroups[fieldName]) * 100)
 );
 
-const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
+const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) => {
   const {
     Title: ChartTitle,
     AverageAgeLabel,
+    AverageDeathAgeLabel,
     Fields,
   } = translations[language].Charts.Age;
 
@@ -117,7 +118,15 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
     <Title>
       <span>{ChartTitle}</span>
 
-      <span>{AverageAgeLabel}: {averageAge.toFixed(1)}</span>
+      <div>
+        <span>
+          {AverageAgeLabel}: {averageAge.toFixed(1)}
+        </span>
+
+        <span style={{ marginLeft: 20 }}>
+          {AverageDeathAgeLabel}: {averageDeathAge.toFixed(1)}
+        </span>
+      </div>
     </Title>
   );
 
@@ -152,8 +161,11 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
 };
 
 AgeBarChartBase.propTypes = {
-  ageGroups: types.objectOf(types.number).isRequired,
+  ageGroups: types.objectOf(
+    types.objectOf(types.number)
+  ).isRequired,
   averageAge: types.number.isRequired,
+  averageDeathAge: types.number.isRequired,
 };
 
 const {

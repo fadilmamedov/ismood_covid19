@@ -60,6 +60,7 @@ const ApplicationBase = ({
     recoveredCases = 0,
     deathCases = 0,
     averageAge = 0,
+    averageDeathAge = 0,
     maleCount = 0,
     femaleCount = 0,
     ageGroups = {},
@@ -163,6 +164,7 @@ const ApplicationBase = ({
                   <AgeBarChart
                     ageGroups={ageGroups}
                     averageAge={averageAge}
+                    averageDeathAge={averageDeathAge}
                   />
                 </Col>
 
