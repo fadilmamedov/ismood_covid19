@@ -58,7 +58,11 @@
     },
     "Age": {
       "Title": "ΗΛΙΚΙΑΚΗ ΚΑΤΑΝΟΜΗ",
-      "AverageAgeLabel": "ΜΕΣΗ ΗΛΙΚΙΑ"
+      "AverageAgeLabel": "ΜΕΣΗ ΗΛΙΚΙΑ",
+      "Fields": {
+        "Cases": "ΚΡΟΥΣΜΑΤΑ",
+        "Deaths": "ΘΑΝΑΤΟΙ"
+      }
     },
     "Gender": {
       "Title": "ΦΥΛΟ",
