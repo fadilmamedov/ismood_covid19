@@ -84,7 +84,11 @@ const HeaderBase = ({ language, setLanguage }) => {
   return (
     <Navbar bg="light" fixed="top" className="header">
       <TitleContainer>
-        <a href="https://www.ismood.com/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.ismood.com/"
+        >
           <Logo />
         </a>
 
