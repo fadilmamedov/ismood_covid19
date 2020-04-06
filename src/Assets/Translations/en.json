@@ -58,7 +58,11 @@
     },
     "Age": {
       "Title": "Age",
-      "AverageAgeLabel": "Average age"
+      "AverageAgeLabel": "Average age",
+      "Fields": {
+        "Cases": "Cases",
+        "Deaths": "Deaths"
+      }
     },
     "Gender": {
       "Title": "Gender",

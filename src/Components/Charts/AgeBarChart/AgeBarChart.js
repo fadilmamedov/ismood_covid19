@@ -23,25 +23,69 @@ const ChartCardBody = styled(ChartCard.Body)`
   }
 `;
 
+const ChartCardFooter = styled(ChartCard.Footer)`
+  display: flex;
+`;
+
+const LegendItem = styled.div`
+  display: flex;
+  align-items: center;
+
+  &:last-child {
+    margin-left: 20px;
+  }
+`;
+
+const LegendItemTitle = styled.h5`
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+`;
+
+const LenendColor = styled.div`
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background-color: ${props => props.color};
+`;
+
+const getTotalCases = r.compose(
+  r.sum,
+  r.values
+);
+
+const getDataForCasesField = (ageGroups, fieldName) => (
+  r.values(ageGroups[fieldName]).map(value => value / getTotalCases(ageGroups[fieldName]) * 100)
+);
+
 const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
-  const { Title: ChartTitle, AverageAgeLabel } = translations[language].Charts.Age;
+  const {
+    Title: ChartTitle,
+    AverageAgeLabel,
+    Fields,
+  } = translations[language].Charts.Age;
 
   const labels = r.pipe(
     r.keys,
     r.sort((a, b) => parseInt(a) - parseInt(b))
-  )(ageGroups);
-
-  const totalCases = r.compose(
-    r.sum,
-    r.values
-  )(ageGroups);
+  )(ageGroups.cases);
 
   const data = {
     labels,
-    datasets: [{
-      data: r.values(ageGroups).map(value => value / totalCases * 100),
-      backgroundColor: '#ee774c'
-    }]
+    datasets: [
+      {
+        label: Fields.Cases,
+        data: getDataForCasesField(ageGroups, 'cases'),
+        backgroundColor: '#ee774c'
+      },
+      {
+        label: Fields.Deaths,
+        data: getDataForCasesField(ageGroups, 'deaths'),
+        backgroundColor: '#5e6168'
+      },
+    ]
   };
 
   const options = {
@@ -55,7 +99,7 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
           const dataset = data.datasets[datasetIndex];
           const percentageValue = dataset.data[index];
 
-          return `${percentageValue.toFixed(2)}%`;
+          return `${dataset.label}: ${percentageValue.toFixed(2)}%`;
         }
       }
     },
@@ -85,6 +129,24 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge }) => {
           options={options}
         />
       </ChartCardBody>
+
+      <ChartCardFooter>
+        <LegendItem>
+          <LenendColor color="#ee774c" />
+
+          <LegendItemTitle>
+            {Fields.Cases}
+          </LegendItemTitle>
+        </LegendItem>
+
+        <LegendItem>
+          <LenendColor color="#5e6168" />
+
+          <LegendItemTitle>
+            {Fields.Deaths}
+          </LegendItemTitle>
+        </LegendItem>
+      </ChartCardFooter>
     </ChartCard>
   )
 };
