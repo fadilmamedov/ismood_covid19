@@ -53,6 +53,9 @@ const CasesPerDayBubbleChartBase = ({
   const options = {
     legend: false,
     tooltips: {
+      bodyFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      titleFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      footerFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       callbacks: {
         label: (options, data) => {
           const { index, datasetIndex } = options;

@@ -42,7 +42,7 @@ const LegendItemTitle = styled.h5`
   font-weight: normal;
 `;
 
-const LenendColor = styled.div`
+const LegendColor = styled.div`
   flex-shrink: 0;
   width: 10px;
   height: 10px;
@@ -84,7 +84,7 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) =
       {
         label: Fields.Deaths,
         data: getDataForCasesField(ageGroups, 'deaths'),
-        backgroundColor: '#5e6168'
+        backgroundColor: '#94969e'
       },
     ]
   };
@@ -94,6 +94,9 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) =
     responsive: true,
     maintainAspectRatio: false,
     tooltips: {
+      bodyFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      titleFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      footerFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       callbacks: {
         label: (options, data) => {
           const { index, datasetIndex } = options;
@@ -141,7 +144,7 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) =
 
       <ChartCardFooter>
         <LegendItem>
-          <LenendColor color="#ee774c" />
+          <LegendColor color="#ee774c" />
 
           <LegendItemTitle>
             {Fields.Cases}
@@ -149,7 +152,7 @@ const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) =
         </LegendItem>
 
         <LegendItem>
-          <LenendColor color="#5e6168" />
+          <LegendColor color="#94969e" />
 
           <LegendItemTitle>
             {Fields.Deaths}

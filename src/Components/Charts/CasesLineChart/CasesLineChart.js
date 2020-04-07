@@ -53,7 +53,7 @@ const CasesLineChart = ({ values }) => {
         tension: 0,
         borderWidth: 1.5,
         borderColor: '#5c7080',
-      }
+      },
     },
   };
 
