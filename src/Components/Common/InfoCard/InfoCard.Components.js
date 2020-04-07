@@ -18,7 +18,7 @@ const Description = styled.div`
   margin-left: 5px;
   margin-bottom: 2px;
   font-size: 12px;
-  white-space: nowrap;
+  line-height: 12px;
 `;
 
 const InnerContainer = styled.div`
