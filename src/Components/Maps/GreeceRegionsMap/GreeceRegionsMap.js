@@ -79,16 +79,19 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
                 viewBox="0 0 918 792"
                 className="regions-map"
               >
-                {r.keys(regions).map((title) => {
-                  const { casesCount = 0 } = regionsInformationObject[title] || {};
+                {r.keys(regions).map((regionName) => {
+                  const { casesCount = 0 } = regionsInformationObject[regionName] || {};
+                  const regionTitle = r.path([regionName, `${language}Name`])(regionsInformationObject);
 
                   return (
                     <MapRegion
-                      key={title}
-                      title={title}
+                      key={regionName}
+                      name={regionName}
+                      title={regionTitle}
                       casesCount={casesCount}
                       maxCasesCount={maxCasesCount}
-                      selected={selectedRegion === title}
+                      language={language}
+                      selected={selectedRegion === regionName}
                     />
                   );
                 })}
