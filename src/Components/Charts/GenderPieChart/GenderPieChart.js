@@ -52,6 +52,9 @@ const GenderPieChartBase = ({ language, maleCount, femaleCount }) => {
     responsive: true,
     maintainAspectRatio: false,
     tooltips: {
+      bodyFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      titleFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      footerFontFamily: 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       callbacks: {
         label: (options, data) => {
           const { index } = options;
