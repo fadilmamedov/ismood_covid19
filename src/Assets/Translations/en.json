@@ -73,7 +73,10 @@
   },
   "Maps": {
     "Greece": {
-      "Title": "Geographic distribution"
+      "Title": "Geographic distribution",
+      "Tooltip": {
+        "Title": "Cases"
+      }
     }
   }
 }
