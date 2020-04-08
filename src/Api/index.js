@@ -45,7 +45,7 @@ const fetchTotalInformation = async () => {
 
 const fetchDailyInformation = async () => {
   const { data } = await axios.get(
-    'https://covidapi.ismood.com/daily-info/?country_name=greece',
+    `${BaseURL}/daily-info/?country_name=greece`,
     { auth }
   );
 
@@ -75,7 +75,7 @@ const fetchDailyInformation = async () => {
 
 const fetchRegionsInformation = async () => {
   const { data } = await axios.get(
-    'https://covidapi.ismood.com/regions/?country_name=greece',
+    `${BaseURL}/regions/?country_name=greece`,
     { auth }
   );
 
