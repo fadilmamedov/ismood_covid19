@@ -27,7 +27,7 @@ const fetchTotalInformation = async () => {
     total_males: maleCount,
     total_females: femaleCount,
     total_age_groups: ageGroups,
-  } = data;
+  } = data[0];
 
   return {
     totalCases,
