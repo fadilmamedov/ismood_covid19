@@ -30,13 +30,13 @@ const CasesCount = styled.span`
   font-weight: 500;
 `;
 
+const removeUnkownLocations = (regionsInformation) => (
+  regionsInformation.filter(region => region.enName !== 'Uknown Location')
+);
+
 const sortRegionsInformation = (regionsInformation) => {
-  const knownRegions = regionsInformation.filter(region => region.enName !== 'Uknown Location');
-  const unknownRegions = regionsInformation.filter(region => region.enName === 'Uknown Location');
-
   const sortByCasesCount = r.sortBy(r.prop('casesCount'));
-
-  return [...sortByCasesCount(knownRegions).reverse(), ...unknownRegions];
+  return sortByCasesCount(regionsInformation).reverse();
 };
 
 const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
@@ -53,6 +53,9 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
     ? Math.max(...regionsInformation.map(r.prop('casesCount')))
     : 1;
 
+  const totalCases = r.sum(regionsInformation.map(({ casesCount }) => casesCount));
+  console.log('[user]', { totalCases });
+
   const handleRegionMouseOver = React.useCallback((regionName) => () => {
     setSelectedRegion(regionName);
   }, [setSelectedRegion]);
@@ -67,6 +70,11 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
       maxCasesCount={maxCasesCount}
     />
   );
+
+  const regionsTableEntries = r.pipe(
+    removeUnkownLocations,
+    sortRegionsInformation,
+  )(regionsInformation);
 
   return (
     <ChartCard title={titleElement}>
@@ -99,7 +107,7 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
             </Col>
 
             <Col lg={4}>
-              {sortRegionsInformation(regionsInformation).map(({ casesCount, enName, grName }) => (
+              {regionsTableEntries.map(({ casesCount, enName, grName }) => (
                 <RegionEntry
                   key={enName}
                   onMouseOver={handleRegionMouseOver(enName)}
