@@ -27,7 +27,7 @@ const fetchTotalInformation = async () => {
     total_males: maleCount,
     total_females: femaleCount,
     total_age_groups: ageGroups,
-  } = data.results[0];
+  } = data;
 
   return {
     totalCases,
@@ -49,7 +49,7 @@ const fetchDailyInformation = async () => {
     { auth }
   );
 
-  const results = data.results.map((entry) => {
+  const results = data.map((entry) => {
     const { date } = entry;
 
     const {
@@ -79,7 +79,7 @@ const fetchRegionsInformation = async () => {
     { auth }
   );
 
-  return data.results.map((entry) => ({
+  return data.map((entry) => ({
       casesCount: entry.region_cases,
       enName: entry.region_en_name,
       grName: entry.region_gr_name,
