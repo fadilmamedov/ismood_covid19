@@ -56,9 +56,14 @@ const getTotalCases = r.compose(
   r.values
 );
 
-const getDataForCasesField = (ageGroups, fieldName) => (
-  r.values(ageGroups[fieldName]).map(value => value / getTotalCases(ageGroups[fieldName]) * 100)
-);
+const getDataForCasesField = (ageGroups, fieldName) => {
+  return r.pipe(
+    r.toPairs,
+    r.sort((a, b) => parseInt(a[0]) - parseInt(b[0])),
+    r.map(([ageGroupName, ageGroupCases]) => ageGroupCases),
+    r.map(value => value / getTotalCases(ageGroups[fieldName]) * 100)
+  )(ageGroups[fieldName]);
+}
 
 const AgeBarChartBase = ({ language, ageGroups, averageAge, averageDeathAge }) => {
   const {
