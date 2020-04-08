@@ -53,9 +53,6 @@ const GreeceRegionsMapBase = ({ language, regionsInformation }) => {
     ? Math.max(...regionsInformation.map(r.prop('casesCount')))
     : 1;
 
-  const totalCases = r.sum(regionsInformation.map(({ casesCount }) => casesCount));
-  console.log('[user]', { totalCases });
-
   const handleRegionMouseOver = React.useCallback((regionName) => () => {
     setSelectedRegion(regionName);
   }, [setSelectedRegion]);

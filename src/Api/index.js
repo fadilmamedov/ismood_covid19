@@ -6,9 +6,13 @@ const auth = {
   password: 'iscov456@'
 };
 
+const BaseURL = process.env.REACT_APP_API_ENDPOINT === 'development'
+  ? 'https://covidtest.ismood.com'
+  : 'https://covidapi.ismood.com'
+
 const fetchTotalInformation = async () => {
   const { data } = await axios.get(
-    'https://covidapi.ismood.com/total-info/?country_name=greece',
+    `${BaseURL}/total-info/?country_name=greece`,
     { auth }
   );
 
