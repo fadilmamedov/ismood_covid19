@@ -105,18 +105,15 @@ const ApplicationBase = ({
                 </Col>
 
                 <Col sm={6} lg={3} className="mt-2">
-                  <ChartLink to="/recovered-cases">
-                    <InfoCard
-                      title={Strings.Cards.RecoveredCases.Title}
-                      value={recoveredCases}
-                      valueColor="green"
-                      timeseries={dailyInformation.map(r.prop('recoveredCases'))}
-                      description={`
-                        ${getPercentage(recoveredCases, totalCases)}%
-                        ${Strings.Cards.RecoveredCases.TotalCasesPercentLabel}
-                      `}
-                    />
-                  </ChartLink>
+                  <InfoCard
+                    title={Strings.Cards.RecoveredCases.Title}
+                    value={recoveredCases}
+                    valueColor="green"
+                    description={`
+                      ${getPercentage(recoveredCases, totalCases)}%
+                      ${Strings.Cards.RecoveredCases.TotalCasesPercentLabel}
+                    `}
+                  />
                 </Col>
 
                 <Col sm={6} lg={3} className="mt-2">
@@ -201,17 +198,6 @@ const ApplicationBase = ({
                 values={dailyInformation.map((entry) => ({
                   x: entry.date,
                   y: entry.activeCases,
-                }))}
-              />
-            </PageContainer>
-          </Route>
-
-          <Route path="/recovered-cases" exact>
-            <PageContainer title={Strings.Pages.RecoveredCases.Title}>
-              <CasesLineChart
-                values={dailyInformation.map((entry) => ({
-                  x: entry.date,
-                  y: entry.recoveredCases,
                 }))}
               />
             </PageContainer>
