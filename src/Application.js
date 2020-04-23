@@ -109,7 +109,6 @@ const ApplicationBase = ({
                     title={Strings.Cards.RecoveredCases.Title}
                     value={recoveredCases}
                     valueColor="green"
-                    timeseries={dailyInformation.map(r.prop('recoveredCases'))}
                     description={`
                       ${getPercentage(recoveredCases, totalCases)}%
                       ${Strings.Cards.RecoveredCases.TotalCasesPercentLabel}
