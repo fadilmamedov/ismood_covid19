@@ -75,7 +75,7 @@ const ApplicationBase = ({
           <Route path="/" exact>
             <Container>
               <Row>
-                <Col sm={6} lg={3} className="mt-2">
+                <Col sm={6} md={4} className="mt-2">
                   <ChartLink to="/total-cases">
                     <InfoCard
                       title={Strings.Cards.TotalCases.Title}
@@ -90,21 +90,7 @@ const ApplicationBase = ({
                   </ChartLink>
                 </Col>
 
-                <Col sm={6} lg={3} className="mt-2">
-                  <ChartLink to="/active-cases">
-                    <InfoCard
-                      title={Strings.Cards.ActiveCases.Title}
-                      value={activeCases}
-                      timeseries={dailyInformation.map(r.prop('activeCases'))}
-                      description={`
-                        ${getPercentage(activeCases, totalCases)}%
-                        ${Strings.Cards.ActiveCases.TotalCasesPercentLabel}
-                      `}
-                    />
-                  </ChartLink>
-                </Col>
-
-                <Col sm={6} lg={3} className="mt-2">
+                <Col sm={6} md={4} className="mt-2">
                   <InfoCard
                     title={Strings.Cards.RecoveredCases.Title}
                     value={recoveredCases}
@@ -116,7 +102,7 @@ const ApplicationBase = ({
                   />
                 </Col>
 
-                <Col sm={6} lg={3} className="mt-2">
+                <Col sm={6} md={4} className="mt-2">
                   <ChartLink to="/death-cases">
                     <InfoCard
                       title={Strings.Cards.DeathCases.Title}
