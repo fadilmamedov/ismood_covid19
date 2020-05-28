@@ -55,9 +55,7 @@ const ApplicationBase = ({
 
   const {
     totalCases = 0,
-    activeCases = 0,
     criticalCases = 0,
-    recoveredCases = 0,
     deathCases = 0,
     averageAge = 0,
     averageDeathAge = 0,
@@ -75,7 +73,7 @@ const ApplicationBase = ({
           <Route path="/" exact>
             <Container>
               <Row>
-                <Col sm={6} md={4} className="mt-2">
+                <Col sm={6} className="mt-2">
                   <ChartLink to="/total-cases">
                     <InfoCard
                       title={Strings.Cards.TotalCases.Title}
@@ -90,19 +88,7 @@ const ApplicationBase = ({
                   </ChartLink>
                 </Col>
 
-                <Col sm={6} md={4} className="mt-2">
-                  <InfoCard
-                    title={Strings.Cards.RecoveredCases.Title}
-                    value={recoveredCases}
-                    valueColor="green"
-                    description={`
-                      ${getPercentage(recoveredCases, totalCases)}%
-                      ${Strings.Cards.RecoveredCases.TotalCasesPercentLabel}
-                    `}
-                  />
-                </Col>
-
-                <Col sm={6} md={4} className="mt-2">
+                <Col sm={6} className="mt-2">
                   <ChartLink to="/death-cases">
                     <InfoCard
                       title={Strings.Cards.DeathCases.Title}
