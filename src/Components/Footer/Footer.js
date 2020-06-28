@@ -13,7 +13,6 @@ import { GreeceRegionsMap } from 'Components/Maps';
 import {
   Navbar,
   ExternalLink,
-  ContactUsLink,
   RightContainer,
   DownloadImageButton,
   InformationSourceDescription,
@@ -21,7 +20,6 @@ import {
 
 const FooterBase = ({ language }) => {
   const {
-    ContactUsLink: ContactUsLinkText,
     DownloadImageButton: DownloadImageButtonText,
     InformationSourceDescription: InformationSourceDescriptionText,
   } = translations[language].Footer;
@@ -72,10 +70,6 @@ const FooterBase = ({ language }) => {
       </InformationSourceDescription>
 
       <RightContainer>
-        <ContactUsLink href="mailto: covid19@ismood.com">
-          {ContactUsLinkText}
-        </ContactUsLink>
-
         <DownloadImageButton onClick={handleDownloadImageButtonClick}>
           {DownloadImageButtonText}
         </DownloadImageButton>

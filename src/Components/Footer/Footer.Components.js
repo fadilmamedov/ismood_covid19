@@ -30,14 +30,7 @@ const RightContainer = styled.div`
   }
 `;
 
-const ContactUsLink = styled.a`
-  @media screen and (max-width: 575px) {
-    font-size: 12px;
-  }
-`;
-
 const DownloadImageButton = styled.button`
-  margin-left: 20px;
   padding: 0;
   border: 0;
   color: #007bff;
@@ -58,7 +51,6 @@ const InformationSourceDescription = styled.span``;
 export {
   Navbar,
   ExternalLink,
-  ContactUsLink,
   RightContainer,
   DownloadImageButton,
   InformationSourceDescription,
