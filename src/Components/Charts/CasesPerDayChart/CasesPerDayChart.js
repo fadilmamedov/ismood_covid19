@@ -33,7 +33,8 @@ const CasesPerDayChartBase = ({ language, newCasesPerDay, totalCasesPerDay }) =>
   const newCasesPerDayData = {
     datasets: [{
       data: newCasesPerDay,
-      backgroundColor: '#ee774c'
+      backgroundColor: '#ee774c',
+      barThickness: 'flex',
     }]
   };
 
