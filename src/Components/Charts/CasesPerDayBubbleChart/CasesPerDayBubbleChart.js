@@ -1,7 +1,7 @@
 import React from 'react';
 import * as r from 'ramda';
-import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
+import { connect } from 'react-redux';
 import { Bubble } from 'react-chartjs-2';
 
 import { selectors } from 'Store';
@@ -30,7 +30,7 @@ const CasesPerDayBubbleChartBase = ({
 
   const values = totalCasesPerDay.map((value, index) => ({
     ...value,
-    r: newCasesPerDay[index].y / 5,
+    r: newCasesPerDay[index].y / 50,
   }));
 
   const data = {
@@ -67,7 +67,7 @@ const CasesPerDayBubbleChartBase = ({
           const dataset = data.datasets[datasetIndex];
           const { x, y, r } = dataset.data[index];
 
-          return `[${x}] ${TotalCasesLabel}: ${y}, ${NewCasesLabel}: ${r * 5}`;
+          return `[${x}] ${TotalCasesLabel}: ${y}, ${NewCasesLabel}: ${r * 50}`;
         }
       }
     },
